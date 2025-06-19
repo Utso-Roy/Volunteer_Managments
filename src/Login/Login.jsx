@@ -1,18 +1,49 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router"; 
+import { Link, useNavigate } from "react-router"; 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const { loginUser, setUser, googleLogin } = use(AuthContext)
+    const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login submitted");
-  };
+      e.preventDefault();
+      const from = e.target 
+      const email = from.email.value
+      const password = from.password.value
+      console.log({ email, password })
+      loginUser(email, password)
+          .then(result => {
+              setUser(result.user)
+              Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your login has been successfully",
+  showConfirmButton: false,
+  timer: 1500
+});
+          })
+          .catch(error => {
+          console.log(error.message)
+      })
+
+    };
+    
 
   const handleGoogleLogin = () => {
-    console.log("Google Login clicked");
+      googleLogin()
+          .then(result => {
+              setUser(result.user)
+              navigate('/')
+              
+          })
+          .catch(error => {
+          alert(error.message)
+      })
   };
 
   return (
@@ -28,8 +59,8 @@ const Login = () => {
               Email Address
             </label>
             <input
-              type="email"
-              id="email"
+                          type="email"
+                          name="email"
               required
               placeholder="you@example.com"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#7CB4DA]"
@@ -41,10 +72,10 @@ const Login = () => {
               Password
             </label>
             <input
-              type={showPassword ? "text" : "password"}
-              id="password"
+                          type={showPassword ? "text" : "password"}
+                          name="password"
               required
-              placeholder="••••••••"
+              placeholder="......"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#7CB4DA] pr-10"
             />
             <span
