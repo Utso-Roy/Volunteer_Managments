@@ -14,6 +14,7 @@ import VolunteerNeed from '../VolunteerNeed/VolunteerNeed';
 import VolunteerDetails from '../VolunteerDetails/VolunteerDetails';
 import BeAVolunteers from '../BeAVolunteers/BeAVolunteers';
 import ManagePost from '../ManagePost/ManagePost';
+import AllVolunteerDetails from '../AllVolunteerDetails/AllVolunteerDetails';
 
 
 export const router = createBrowserRouter([
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: '/manage_post',
         element : <PrivateRoute> <ManagePost></ManagePost> </PrivateRoute>
+      },
+      {
+        path: '/all_Volunteer_details/:id',
+        element : <PrivateRoute> <AllVolunteerDetails></AllVolunteerDetails> </PrivateRoute>
       }
       
 

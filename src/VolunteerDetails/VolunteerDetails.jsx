@@ -23,7 +23,7 @@ const VolunteerDetails = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white rounded-lg shadow-lg">
+    <div className="max-w-2xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white rounded-lg shadow-lg">
   {!post ? (
     <span className="loading block mx-auto loading-bars loading-xl"></span>
   ) : (

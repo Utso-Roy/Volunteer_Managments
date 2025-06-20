@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const VolunteerNeed = () => {
   const [volunteers, setVolunteers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const url = query
       ? `http://localhost:3000/volunteerAddPosts?title=${encodeURIComponent(query)}`
       : 'http://localhost:3000/volunteerAddPosts';
 
+    setLoading(true);
     fetch(url)
       .then(res => res.json())
       .then(data => setVolunteers(data.data || []))
-      .catch(err => console.error('Error fetching volunteers:', err));
+      .catch(err => console.error('Error fetching volunteers:', err))
+      .finally(() => setLoading(false));
   }, [query]);
 
   const handleSearch = () => {
@@ -26,7 +30,6 @@ const VolunteerNeed = () => {
         All Volunteer Need Posts
       </h1>
 
-      {/* 🔍 Search Input */}
       <div className="flex justify-center items-center gap-2 my-5">
         <input
           type="text"
@@ -43,7 +46,11 @@ const VolunteerNeed = () => {
         </button>
       </div>
 
-      {volunteers.length === 0 ? (
+      {loading ? (
+        <div className="text-center my-12">
+          <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+      ) : volunteers.length === 0 ? (
         <p className="text-gray-500 text-center">No volunteer posts found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -54,13 +61,11 @@ const VolunteerNeed = () => {
             >
               <img
                 src={
-                  v.thumbnail ||
-                  'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
+                  v.thumbnail 
                 }
                 alt={v.title}
                 className="w-full h-52 object-cover"
               />
-
               <div className="p-6 space-y-3">
                 <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
                 <p className="text-gray-600 text-sm">
@@ -74,9 +79,12 @@ const VolunteerNeed = () => {
                   {new Date(v.deadline).toLocaleDateString()}
                 </p>
                 <div className="pt-4">
-                  <button className="w-full btn btn-outline btn-primary hover:bg-[#0267af] hover:text-white">
+                          <Link to={`/all_Volunteer_details/${v._id}`}>
+                          
+                          <button className="w-full btn btn-outline btn-primary hover:bg-[#0267af] hover:text-white">
                     View Details
                   </button>
+                          </Link>
                 </div>
               </div>
             </div>
