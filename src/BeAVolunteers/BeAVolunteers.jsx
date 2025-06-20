@@ -7,13 +7,13 @@ const BeAVolunteers = ({ post, onClose }) => {
 
   if (!post) return null;
 
-  const handleRequest = (e) => {
+  const handleRequest = async (e) => {
     e.preventDefault();
     const form = e.target;
     const suggestion = form.suggestion.value;
 
     const requestData = {
-      postId: post._id,
+      postId: post.id,
       thumbnail: post.thumbnail,
       title: post.title,
       description: post.description,
@@ -29,15 +29,32 @@ const BeAVolunteers = ({ post, onClose }) => {
       status: "requested",
     };
 
-    console.log("Volunteer Request Data:", requestData);
+    try {
+      const res = await fetch ("http://localhost:3000/volunteerRequest", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
-    Swal.fire(
-      "Request Sent!",
-      "You have successfully requested to volunteer.",
-      "success"
-    );
-    form.reset();
-    onClose();
+      const data = await res.json();
+
+      if (data.success) {
+        Swal.fire(
+          "Request Sent!",
+          "You have successfully requested to volunteer.",
+          "success"
+        );
+        form.reset();
+        onClose();
+      } else {
+        Swal.fire("Error", "Something went wrong.", "error");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire("Error", "Server error occurred", "error");
+    }
   };
 
   return (
@@ -45,7 +62,7 @@ const BeAVolunteers = ({ post, onClose }) => {
       <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-8 relative overflow-y-auto max-h-[90vh]">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-2xl btn  font-semibold text-gray-500 hover:text-red-600 transition"
+          className="absolute top-4 right-4 text-2xl btn font-semibold text-gray-500 hover:text-red-600 transition"
           aria-label="Close modal"
         >
           &times;
@@ -56,155 +73,67 @@ const BeAVolunteers = ({ post, onClose }) => {
         </h2>
 
         <form onSubmit={handleRequest} className="space-y-6">
-          {/* Thumbnail */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Thumbnail
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={post.thumbnail}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
+          {[
+            { label: "Thumbnail", value: post.thumbnail },
+            { label: "Post Title", value: post.title },
+            {
+              label: "Description",
+              value: post.description ||
+                "A form where users can apply to join a volunteer opportunity.",
+              textarea: true,
+              rows: 4,
+            },
+            { label: "Category", value: post.category },
+            { label: "Location", value: post.location || "Bangladesh" },
+            {
+              label: "No. of Volunteers Needed",
+              value: post.volunteersNeeded || 6,
+            },
+            {
+              label: "Deadline",
+              value: new Date(post.deadline).toLocaleDateString(),
+            },
+            {
+              label: "Organizer Name",
+              value: post.organizerName || "N/A",
+            },
+            {
+              label: "Organizer Email",
+              value: post.organizerEmail || "N/A",
+              type: "email",
+            },
+            {
+              label: "Your Name",
+              value: user?.displayName || "",
+            },
+            {
+              label: "Your Email",
+              value: user?.email || "",
+              type: "email",
+            },
+          ].map((field, index) => (
+            <div key={index}>
+              <label className="block mb-1 font-semibold text-gray-700">
+                {field.label}
+              </label>
+              {field.textarea ? (
+                <textarea
+                  readOnly
+                  value={field.value}
+                  rows={field.rows}
+                  className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600 resize-none"
+                />
+              ) : (
+                <input
+                  type={field.type || "text"}
+                  readOnly
+                  value={field.value}
+                  className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
+                />
+              )}
+            </div>
+          ))}
 
-          {/* Title */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Post Title
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={post.title}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Description */}
-         <div>
-  <label className="block mb-1 font-semibold text-gray-700">
-    Description
-  </label>
-  <textarea
-    readOnly
-    value={
-      post.description
-        ? post.description
-        : "A form where users can apply to join a volunteer opportunity by submitting their details and suggestions."
-    }
-    rows={4}
-    className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600 resize-none"
-  />
-</div>
-
-
-          {/* Category */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Category
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={post.category}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Location */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Location
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={post.location || "Bangladesh"}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Volunteers Needed */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              No. of Volunteers Needed
-            </label>
-            <input
-              type="number"
-              readOnly
-              value={post.volunteersNeeded || 6}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Deadline */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Deadline
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={new Date(post.deadline).toLocaleDateString()}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Organizer Name */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Organizer Name
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={post.organizerName || 'N/A'}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Organizer Email */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Organizer Email
-            </label>
-            <input
-              type="email"
-              readOnly
-              value={post.organizerEmail || 'N/A'}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Volunteer Name */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Your Name
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={user?.displayName || ""}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Volunteer Email */}
-          <div>
-            <label className="block mb-1 font-semibold text-gray-700">
-              Your Email
-            </label>
-            <input
-              type="email"
-              readOnly
-              value={user?.email || ""}
-              className="w-full rounded border border-gray-300 px-3 py-2 bg-gray-100 cursor-not-allowed text-gray-600"
-            />
-          </div>
-
-          {/* Suggestion */}
           <div>
             <label className="block mb-1 font-semibold text-gray-700">
               Suggestion (optional)
@@ -217,10 +146,8 @@ const BeAVolunteers = ({ post, onClose }) => {
             />
           </div>
 
-          {/* Status */}
           <input type="hidden" name="status" value="requested" />
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-[#0267af] text-white font-semibold py-3 rounded hover:bg-[#014f86] transition"
