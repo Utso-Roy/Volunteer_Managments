@@ -3,19 +3,19 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 
 const Home = () => {
     const [volunteerPosts, setVolunteerPosts] = useState([]);
-    const location = useLocation()
-    console.log(location)
 
   useEffect(() => {
-    fetch("http://localhost:3000/volunteerData")
+    fetch("http://localhost:3000/volunteerSingleData")
       .then((res) => res.json())
       .then((data) => setVolunteerPosts(data))
       .catch((err) => console.error("Error loading volunteer data:", err));
   }, []);
+    
+    
 
   const settings = {
     dots: true,

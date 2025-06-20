@@ -9,7 +9,7 @@ const VolunteerDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/volunteerData`)
+    fetch(`http://localhost:3000/volunteerSingleData`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.find(item => item._id === id); 
@@ -24,29 +24,57 @@ const VolunteerDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white rounded-lg shadow-lg">
-      {!post ? (
-        <span className="loading block mx-auto loading-bars loading-xl"></span>
-      ) : (
-        <>
-          <img src={post.thumbnail} alt={post.title} className="w-full h-64 object-cover rounded" />
+  {!post ? (
+    <span className="loading block mx-auto loading-bars loading-xl"></span>
+  ) : (
+    <>
+      <img
+        src={post.thumbnail}
+        alt={post.title}
+        className="w-full h-64 object-cover rounded"
+      />
 
-          <h2 className="text-3xl font-bold mt-6">{post.title}</h2>
-          <p className="mt-2"><strong>Category:</strong> {post.category}</p>
-          <p><strong>Deadline:</strong> {new Date(post.deadline).toLocaleString()}</p>
+      <h2 className="text-3xl font-bold mt-6">{post.title}</h2>
 
-          <button
-            onClick={handleVolunteerClick}
-            className="mt-6 w-full btn text-white bg-[#0267af]"
+      <div className="mt-4 space-y-2 text-gray-700">
+        <p>
+          <strong>Category:</strong> {post.category}
+        </p>
+        <p>
+          <strong>Description:</strong> {post.description}
+        </p>
+        <p>
+          <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
+        </p>
+        <p>
+          <strong>Deadline:</strong> {new Date(post.deadline).toLocaleString()}
+        </p>
+        <p>
+          <strong>Organizer Name:</strong> {post.organizerName}
+        </p>
+        <p>
+          <strong>Organizer Email:</strong>{" "}
+          <a
+            href={`mailto:${post.organizerEmail}`}
+            className="text-blue-600 underline"
           >
-            Be a Volunteer
-          </button>
-        </>
-      )}
+            {post.organizerEmail}
+          </a>
+        </p>
+      </div>
 
-      {showModal && (
-        <BeAVolunteers post={post} onClose={() => setShowModal(false)} />
-      )}
-    </div>
+      <button
+        onClick={handleVolunteerClick}
+        className="mt-6 w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] transition"
+      >
+        Be a Volunteer
+      </button>
+    </>
+  )}
+
+  {showModal && <BeAVolunteers post={post} onClose={() => setShowModal(false)} />}
+</div>
+
   );
 };
 
