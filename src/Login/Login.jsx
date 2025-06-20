@@ -1,24 +1,27 @@
 import React, { use, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router"; 
+import { Link, useLocation, useNavigate } from "react-router"; 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { loginUser, setUser, googleLogin } = use(AuthContext)
+    const { loginUser, setUser, googleLogin } = use(AuthContext) 
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
     const navigate = useNavigate()
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      const from = e.target 
-      const email = from.email.value
-      const password = from.password.value
+      const form = e.target 
+      const email = form.email.value
+      const password = form.password.value
       console.log({ email, password })
       loginUser(email, password)
           .then(result => {
               setUser(result.user)
+              navigate(from, { replace: true });
               Swal.fire({
   position: "top-end",
   icon: "success",

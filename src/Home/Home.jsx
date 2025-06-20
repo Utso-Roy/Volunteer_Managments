@@ -3,10 +3,12 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const Home = () => {
-  const [volunteerPosts, setVolunteerPosts] = useState([]);
+    const [volunteerPosts, setVolunteerPosts] = useState([]);
+    const location = useLocation()
+    console.log(location)
 
   useEffect(() => {
     fetch("http://localhost:3000/volunteerData")
@@ -29,7 +31,6 @@ const Home = () => {
   return (
     <div className="space-y-12">
 
-      {/* Slider Section */}
       <div className="w-full mx-auto my-6 rounded-xl overflow-hidden shadow-xl">
         <Slider {...settings}>
           <div className="bg-[#0a72ba] text-center text-white flex flex-col justify-center py-20 items-center min-h-[250px] p-8">
@@ -69,7 +70,7 @@ const Home = () => {
                 <p className="text-sm text-gray-600">
                   Deadline: {new Date(post.deadline).toLocaleDateString()}
                 </p>
-                <Link to={`/volunteer/${post._id}`}>
+                <Link to={`/volunteer-details/${post._id}`}>
                   <button className="mt-3 bg-[#0a72ba] cursor-pointer text-white px-4 py-2 rounded transition">
                     View Details
                   </button>
@@ -81,9 +82,9 @@ const Home = () => {
 
         <div className="text-center mt-6">
           <Link to="/volunteer-posts">
-            <button className="bg-[#0a72ba] text-white px-6 py-2 rounded hover:bg-blue-800 transition">
+            <Link to="/volunteer-needs" className="bg-[#0a72ba] text-white px-6 py-2 rounded hover:bg-blue-800 transition">
               See All
-            </button>
+            </Link>
           </Link>
         </div>
       </div>

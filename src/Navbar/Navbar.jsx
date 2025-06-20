@@ -59,7 +59,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/all-posts">All Volunteer Need Posts</Link>
+              <Link to="/volunteer-needs">All Volunteer Need Posts</Link>
             </li>
           </ul>
         </div>
@@ -75,7 +75,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/all-posts">All Volunteer Need Posts</Link>
+            <Link to="/volunteer-needs">All Volunteer Need Posts</Link>
           </li>
         </ul>
       </div>
@@ -101,12 +101,12 @@ const Navbar = () => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xs bg-gray-100 rounded-box w-52"
               >
-                <li>
-                  <Link to="/add-post">Add Volunteer Need Post</Link>
+                <li className="hover:bg-[#0267af] hover:text-white font-semibold">
+                  <Link to="/add-volunteer">Add Volunteer Need Post</Link>
                 </li>
-                <li>
+                <li className="hover:bg-[#0267af] hover:text-white font-semibold">
                   <Link to="/manage-posts">Manage My Posts</Link>
                 </li>
               </ul>
