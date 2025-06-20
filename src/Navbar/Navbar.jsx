@@ -158,7 +158,7 @@ const Navbar = () => {
                   <Link to="/add-volunteer">Add Volunteer Need Post</Link>
                 </li>
                 <li className="hover:bg-[#0267af] hover:text-white font-semibold">
-                  <Link to="/manage_post">Manage My Posts</Link>
+                  <Link to="/manage_post/:id">Manage My Posts</Link>
                 </li>
               </ul>
             </div>

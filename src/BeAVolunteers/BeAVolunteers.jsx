@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { useNavigate } from "react-router";
 
 const BeAVolunteers = ({ post, onClose }) => {
-  const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
+    console.log(post)
 
   if (!post) return null;
 
@@ -45,9 +48,13 @@ const BeAVolunteers = ({ post, onClose }) => {
           "Request Sent!",
           "You have successfully requested to volunteer.",
           "success"
-        );
+          );
+         
         form.reset();
-        onClose();
+          onClose();
+          setTimeout(() => {
+  navigate(`/manage_post/${post._id}`);
+}, 300)
       } else {
         Swal.fire("Error", "Something went wrong.", "error");
       }
@@ -148,12 +155,16 @@ const BeAVolunteers = ({ post, onClose }) => {
 
           <input type="hidden" name="status" value="requested" />
 
-          <button
+                  
+                  
+                    <button
             type="submit"
             className="w-full bg-[#0267af] text-white font-semibold py-3 rounded hover:bg-[#014f86] transition"
           >
             Request
           </button>
+                  
+            
         </form>
       </div>
     </div>

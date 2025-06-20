@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         element : <PrivateRoute> <BeAVolunteers></BeAVolunteers> </PrivateRoute>
       },
       {
-        path: '/manage_post',
+        path: '/manage_post/:id',
         element : <PrivateRoute> <ManagePost></ManagePost> </PrivateRoute>
       },
       {
