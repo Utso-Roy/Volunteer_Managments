@@ -81,11 +81,11 @@ const Home = () => {
         </div>
 
         <div className="text-center mt-6">
-          <Link to="/volunteer-posts">
+    
             <Link to="/volunteer-needs" className="bg-[#0a72ba] text-white px-6 py-2 rounded hover:bg-blue-800 transition">
               See All
             </Link>
-          </Link>
+        
         </div>
       </div>
 

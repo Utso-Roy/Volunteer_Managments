@@ -13,6 +13,7 @@ import AddVolunteer from '../AddVolunteer/AddVolunteer';
 import VolunteerNeed from '../VolunteerNeed/VolunteerNeed';
 import VolunteerDetails from '../VolunteerDetails/VolunteerDetails';
 import BeAVolunteers from '../BeAVolunteers/BeAVolunteers';
+import ManagePost from '../ManagePost/ManagePost';
 
 
 export const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: '/be-a-volunteer',
         element : <PrivateRoute> <BeAVolunteers></BeAVolunteers> </PrivateRoute>
+      },
+      {
+        path: '/manage_post',
+        element : <PrivateRoute> <ManagePost></ManagePost> </PrivateRoute>
       }
       
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router"; 
-import volunteer from "../assets/volunteer.png";
+// import volunteer from "../assets/volunteer.png";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -90,11 +90,10 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="flex items-center">
-          <img className="w-32 mr-2" src={volunteer} alt="volunteer" />
+              <div className="flex gap-1 items-center">
+                  <h2 className="font-bold text-[#0267af] text-[1.5rem]">VolunteerHub</h2>
           <div className="flex gap-2 items-center">
-            <h2 className="font-bold text-[1.5rem] text-[#0267af]">Hub</h2>
-
+<img className="w-8 h-8" src="https://i.ibb.co/DgQ4vJb5/volunteer-1.png" alt="volunteer" />
             <button 
               onClick={toggleTheme} 
               className=" cursor-pointer  ml-2"
@@ -159,7 +158,7 @@ const Navbar = () => {
                   <Link to="/add-volunteer">Add Volunteer Need Post</Link>
                 </li>
                 <li className="hover:bg-[#0267af] hover:text-white font-semibold">
-                  <Link to="/manage-posts">Manage My Posts</Link>
+                  <Link to="/manage_post">Manage My Posts</Link>
                 </li>
               </ul>
             </div>
