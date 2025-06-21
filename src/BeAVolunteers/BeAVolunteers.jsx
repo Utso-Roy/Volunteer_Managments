@@ -4,8 +4,8 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router";
 
 const BeAVolunteers = ({ post, onClose }) => {
-    const { user } = useContext(AuthContext);
-    const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   if (!post) return null;
 
@@ -32,13 +32,16 @@ const BeAVolunteers = ({ post, onClose }) => {
     };
 
     try {
-      const res = await fetch ("http://localhost:3000/volunteerRequest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const res = await fetch(
+        "https://volunteer-server-six.vercel.app/volunteerRequest",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       const data = await res.json();
 
@@ -47,13 +50,13 @@ const BeAVolunteers = ({ post, onClose }) => {
           "Request Sent!",
           "You have successfully requested to volunteer.",
           "success"
-          );
-         
+        );
+
         form.reset();
-          onClose();
-          setTimeout(() => {
-  navigate(`/manage_post/${post._id}`);
-}, 300)
+        onClose();
+        setTimeout(() => {
+          navigate(`/manage_post/${post._id}`);
+        }, 300);
       } else {
         Swal.fire("Error", "Something went wrong.", "error");
       }
@@ -84,7 +87,8 @@ const BeAVolunteers = ({ post, onClose }) => {
             { label: "Post Title", value: post.title },
             {
               label: "Description",
-              value: post.description ||
+              value:
+                post.description ||
                 "A form where users can apply to join a volunteer opportunity.",
               textarea: true,
               rows: 4,
@@ -154,16 +158,12 @@ const BeAVolunteers = ({ post, onClose }) => {
 
           <input type="hidden" name="status" value="requested" />
 
-                  
-                  
-                    <button
+          <button
             type="submit"
             className="w-full bg-[#0267af] text-white font-semibold py-3 rounded hover:bg-[#014f86] transition"
           >
             Request
           </button>
-                  
-            
         </form>
       </div>
     </div>

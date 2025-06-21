@@ -15,14 +15,21 @@ import VolunteerDetails from '../VolunteerDetails/VolunteerDetails';
 import BeAVolunteers from '../BeAVolunteers/BeAVolunteers';
 import ManagePost from '../ManagePost/ManagePost';
 import AllVolunteerDetails from '../AllVolunteerDetails/AllVolunteerDetails';
+import Error from '../Error/Error';
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root> </Root>,
+    errorElement : <Error></Error>,
     children: [
-      { index: true, path: '/', element: <Home></Home> },
+      {
+        index: true,
+        path: '/',
+        element: <Home></Home>,
+        
+      },
       {
         path: '/login',
         element : <Login></Login>

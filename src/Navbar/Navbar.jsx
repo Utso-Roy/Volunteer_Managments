@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router"; 
-// import volunteer from "../assets/volunteer.png";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 

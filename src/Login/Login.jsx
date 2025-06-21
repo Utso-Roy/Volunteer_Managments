@@ -17,9 +17,8 @@ const Login = () => {
       const form = e.target 
       const email = form.email.value
       const password = form.password.value
-      console.log({ email, password })
       loginUser(email, password)
-          .then(result => {
+          .then(async (result) => {
               setUser(result.user)
               navigate(from, { replace: true });
               Swal.fire({
@@ -31,23 +30,43 @@ const Login = () => {
 });
           })
           .catch(error => {
-          console.log(error.message)
-      })
+  console.error("Login error:", error.message);
+
+  Swal.fire({
+    icon: "error",
+    title: "Login Failed",
+    text: "Please check your email and password and try again.",
+    confirmButtonColor: "#d33",
+    confirmButtonText: "Try Again"
+  });
+});
+
 
     };
     
+const handleGoogleLogin = () => {
+  googleLogin()
+    .then((result) => {
+      setUser(result.user);
+      navigate("/");
 
-  const handleGoogleLogin = () => {
-      googleLogin()
-          .then(result => {
-              setUser(result.user)
-              navigate('/')
-              
-          })
-          .catch(error => {
-          alert(error.message)
-      })
-  };
+   
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Google Login Successful!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.message,
+      });
+    });
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -115,7 +134,7 @@ const Login = () => {
         <div className="flex justify-center">
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-3 bg-[#0a72ba] text-white border border-gray-300 hover:bg-[#095c94] py-2 rounded-md transition"
+            className="w-full flex items-center justify-center gap-3 cursor-pointer bg-[#0a72ba] text-white border border-gray-300 hover:bg-[#095c94] py-2 rounded-md transition"
           >
             <span className="flex gap-2 items-center">
               <FaGoogle /> Continue with Google

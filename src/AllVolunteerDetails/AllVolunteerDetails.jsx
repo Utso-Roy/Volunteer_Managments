@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router'; 
-import BeAVolunteers from '../BeAVolunteers/BeAVolunteers'; 
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import BeAVolunteers from "../BeAVolunteers/BeAVolunteers";
 
 const AllVolunteerDetails = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [volunteerData, setVolunteerData] = useState([]);
-  const [showModal, setShowModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3000/volunteerAddPosts')
-      .then(res => res.json())
-      .then(data => setVolunteerData(data.data || data));
+    fetch("https://volunteer-server-six.vercel.app/volunteerAddPosts")
+      .then((res) => res.json())
+      .then((data) => setVolunteerData(data.data || data));
   }, []);
 
-  const post = volunteerData.find(p => p._id === id);
+  const post = volunteerData.find((p) => p._id === id);
 
   const handleVolunteerClick = () => {
     setShowModal(true);
   };
 
   if (!post) {
-    return <p className="text-center text-gray-500 mt-10">Loading volunteer details...</p>;
+    return (
+      <p className="text-center text-gray-500 mt-10">
+        Loading volunteer details...
+      </p>
+    );
   }
 
   return (
@@ -33,12 +37,26 @@ const AllVolunteerDetails = () => {
         />
         <div className=" my-4 space-y-2">
           <h2 className="text-3xl font-bold text-[#0267af]">{post.title}</h2>
-          <p className="text-gray-700"><strong>Description:</strong> {post.description}</p>
-          <p className="text-gray-700"><strong>Category:</strong> {post.category}</p>
-          <p className="text-gray-700"><strong>Location:</strong> {post.location}</p>
-          <p className="text-gray-700"><strong>Volunteers Needed:</strong> {post.volunteersNeeded}</p>
-          <p className="text-gray-700"><strong>Deadline:</strong> {new Date(post.deadline).toLocaleDateString()}</p>
-          <p className="text-gray-700"><strong>Organizer:</strong> {post.organizerName} ({post.organizerEmail})</p>
+          <p className="text-gray-700">
+            <strong>Description:</strong> {post.description}
+          </p>
+          <p className="text-gray-700">
+            <strong>Category:</strong> {post.category}
+          </p>
+          <p className="text-gray-700">
+            <strong>Location:</strong> {post.location}
+          </p>
+          <p className="text-gray-700">
+            <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
+          </p>
+          <p className="text-gray-700">
+            <strong>Deadline:</strong>{" "}
+            {new Date(post.deadline).toLocaleDateString()}
+          </p>
+          <p className="text-gray-700">
+            <strong>Organizer:</strong> {post.organizerName} (
+            {post.organizerEmail})
+          </p>
 
           <div className="pt-4">
             <button

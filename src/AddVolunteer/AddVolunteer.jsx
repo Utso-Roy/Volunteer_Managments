@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../AuthProvider/AuthProvider';
-import Swal from 'sweetalert2';
+import React, { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
@@ -22,23 +22,26 @@ const AddVolunteer = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/volunteerAddPosts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(postData),
-      });
+      const res = await fetch(
+        "https://volunteer-server-six.vercel.app/volunteerAddPosts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(postData),
+        }
+      );
 
       const data = await res.json();
 
       if (data.insertedId) {
-        Swal.fire('Success!', 'Your volunteer post has been added.', 'success');
+        Swal.fire("Success!", "Your volunteer post has been added.", "success");
         form.reset();
       } else {
-        Swal.fire('Error!', 'Something went wrong.', 'error');
+        Swal.fire("Error!", "Something went wrong.", "error");
       }
     } catch (err) {
       console.error(err);
-      Swal.fire('Error!', 'Server error occurred.', 'error');
+      Swal.fire("Error!", "Server error occurred.", "error");
     }
   };
 
@@ -48,13 +51,34 @@ const AddVolunteer = () => {
         onSubmit={handleAddPost}
         className="space-y-4 w-full max-w-xl p-6 shadow-md bg-white rounded-xl"
       >
-        <input type="text" name="thumbnail" placeholder="Thumbnail URL" className="input input-bordered w-full" required />
+        <input
+          type="text"
+          name="thumbnail"
+          placeholder="Thumbnail URL"
+          className="input input-bordered w-full"
+          required
+        />
 
-        <input type="text" name="title" placeholder="Post Title" className="input input-bordered w-full" required />
+        <input
+          type="text"
+          name="title"
+          placeholder="Post Title"
+          className="input input-bordered w-full"
+          required
+        />
 
-        <textarea name="description" placeholder="Description" className="textarea textarea-bordered w-full" required></textarea>
+        <textarea
+          name="description"
+          placeholder="Description"
+          className="textarea textarea-bordered w-full"
+          required
+        ></textarea>
 
-        <select name="category" className="select select-bordered w-full" required>
+        <select
+          name="category"
+          className="select select-bordered w-full"
+          required
+        >
           <option value="">Select Category</option>
           <option>healthcare</option>
           <option>education</option>
@@ -62,20 +86,54 @@ const AddVolunteer = () => {
           <option>animal welfare</option>
         </select>
 
-        <input type="text" name="location" placeholder="Location" className="input input-bordered w-full" required />
+        <input
+          type="text"
+          name="location"
+          placeholder="Location"
+          className="input input-bordered w-full"
+          required
+        />
 
-        <input type="number" name="volunteers" placeholder="Number of Volunteers Needed" className="input input-bordered w-full" required />
+        <input
+          type="number"
+          name="volunteers"
+          placeholder="Number of Volunteers Needed"
+          className="input input-bordered w-full"
+          required
+        />
 
         <div className="w-full">
-          <label className="block mb-1 font-medium text-gray-700">Deadline</label>
-          <input type="date" name="deadline" className="input input-bordered w-full" required />
+          <label className="block mb-1 font-medium text-gray-700">
+            Deadline
+          </label>
+          <input
+            type="date"
+            name="deadline"
+            className="input input-bordered w-full"
+            required
+          />
         </div>
 
-        <input type="text" name="organizerName" value={user?.displayName || ''} readOnly className="input input-bordered w-full" />
+        <input
+          type="text"
+          name="organizerName"
+          value={user?.displayName || ""}
+          readOnly
+          className="input input-bordered w-full"
+        />
 
-        <input type="email" name="organizerEmail" value={user?.email || ''} readOnly className="input input-bordered w-full" />
+        <input
+          type="email"
+          name="organizerEmail"
+          value={user?.email || ""}
+          readOnly
+          className="input input-bordered w-full"
+        />
 
-        <button type="submit" className="btn bg-[#0267af] text-white hover:bg-[#014f86] w-full">
+        <button
+          type="submit"
+          className="btn bg-[#0267af] text-white hover:bg-[#014f86] w-full"
+        >
           Add Post
         </button>
       </form>
