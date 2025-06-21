@@ -80,15 +80,15 @@ if (!/[a-z]/.test(password)) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-md rounded-xl p-8 w-full max-w-md">
+    <div className="min-h-screen dark:bg-[#1d232a] my-2 dark:border-2 dark:border-blue-300  flex items-center justify-center bg-gray-100 px-4">
+      <div className="bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300  shadow-md rounded-xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center text-[#0a72ba] mb-6">
           Create an Account
         </h2>
 
         <form onSubmit={handleRegisterBtn} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-1">
               Full Name
             </label>
             <input
@@ -101,7 +101,7 @@ if (!/[a-z]/.test(password)) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block dark:text-white text-sm font-medium text-gray-700 mb-1">
               Email Address
             </label>
             <input
@@ -114,7 +114,7 @@ if (!/[a-z]/.test(password)) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block dark:text-white text-sm font-medium text-gray-700 mb-1">
               Photo URL
             </label>
             <input
@@ -126,7 +126,7 @@ if (!/[a-z]/.test(password)) {
           </div>
 
           <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block dark:text-white text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
@@ -156,7 +156,7 @@ if (!/[a-z]/.test(password)) {
           </button>
         </form>
 
-        <p className="mt-6 text-sm text-center text-gray-600">
+        <p className="mt-6 text-sm text-center dark:text-white text-gray-600">
           Already have an account?{" "}
           <Link to="/login" className="text-[#0a72ba] hover:underline">
             Login
