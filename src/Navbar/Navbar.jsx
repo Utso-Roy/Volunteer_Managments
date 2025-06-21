@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router"; 
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOutUser, setUser } = useContext(AuthContext);
@@ -90,9 +91,9 @@ const Navbar = () => {
           </ul>
         </div>
               <div className="flex gap-1 items-center">
-                  <h2 className="font-bold text-[#0267af] text-[1.5rem]">VolunteerHub</h2>
+                  <h2 className="font-bold text-[#0267af]  md:text-[1.5rem]">VolunteerHub</h2>
           <div className="flex gap-2 items-center">
-<img className="w-8 h-8" src="https://i.ibb.co/DgQ4vJb5/volunteer-1.png" alt="volunteer" />
+<img className=" w-5 h-5 md:w-8 sm:w-5 sm:h-5 md:h-8" src="https://i.ibb.co/DgQ4vJb5/volunteer-1.png" alt="volunteer" />
             <button 
               onClick={toggleTheme} 
               className=" cursor-pointer  ml-2"
@@ -141,9 +142,12 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full relative">
-                  <img src={user?.photoURL} alt="User" />
-                </div>
+                                  <img src={user?.photoURL} alt="User" />
+                                  
+                              </div>
+                             
               </div>
+                           
 
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 whitespace-nowrap">
                 {user?.displayName || "No Name"}
@@ -164,7 +168,7 @@ const Navbar = () => {
 
             <button
               onClick={handleLogOut}
-              className="bg-[#0a72ba] hover:bg-red-600 text-white px-4 py-2 rounded-md transition duration-200"
+              className="bg-[#0a72ba] cursor-pointer hover:bg-red-600 text-white px-4 py-2 rounded-md transition duration-200"
             >
               Logout
             </button>
