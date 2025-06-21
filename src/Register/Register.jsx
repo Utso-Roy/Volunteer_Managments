@@ -47,20 +47,36 @@ if (!/[a-z]/.test(password)) {
   return;
 }
 
-    signUpUser(email, password)
-      .then((result) => {
-        const createdUser = result.user;
-        return updateProfile(createdUser, {
-          displayName: name,
-          photoURL: photo,
-        }).then(() => {
-          setUser({ ...createdUser, displayName: name, photoURL: photo });
-          navigate('/')
-        });
-      })
-      .catch((error) => {
-        console.log(error.code);
+   signUpUser(email, password)
+  .then((result) => {
+    const createdUser = result.user;
+    return updateProfile(createdUser, {
+      displayName: name,
+      photoURL: photo,
+    }).then(() => {
+      setUser({ ...createdUser, displayName: name, photoURL: photo });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful',
+        text: `Welcome, ${name}!`,
+        showConfirmButton: false,
+        timer: 2000
       });
+
+      navigate('/');
+    });
+  })
+  .catch((error) => {
+    console.log(error.code);
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Sign Up Failed',
+      text: error.message,
+    });
+  });
+
   };
 
   return (
