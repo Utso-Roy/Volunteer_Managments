@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 
 const VolunteerNeed = () => {
-  const [volunteers, setVolunteers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [volunteers, setVolunteers] = useState([])
 
   useEffect(() => {
     const url = query
