@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router"; 
+import { Link, useNavigate } from "react-router"; 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const Register = () => {
   const { setUser, signUpUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
 
   const handleRegisterBtn = (e) => {
     e.preventDefault();
@@ -46,8 +47,6 @@ if (!/[a-z]/.test(password)) {
   return;
 }
 
-    console.log({ name, email, password, photo });
-
     signUpUser(email, password)
       .then((result) => {
         const createdUser = result.user;
@@ -56,7 +55,7 @@ if (!/[a-z]/.test(password)) {
           photoURL: photo,
         }).then(() => {
           setUser({ ...createdUser, displayName: name, photoURL: photo });
-          console.log("Profile updated successfully!");
+          navigate('/')
         });
       })
       .catch((error) => {
@@ -135,7 +134,7 @@ if (!/[a-z]/.test(password)) {
 
           <button
             type="submit"
-            className="w-full bg-[#0a72ba] text-white py-2 rounded-md hover:bg-[#095c94] transition"
+            className="w-full bg-[#0a72ba] cursor-pointer text-white py-2 rounded-md hover:bg-[#095c94] transition"
           >
             Register
           </button>

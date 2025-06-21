@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegCalendarCheck, FaTrash, FaEdit, FaSpinner } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -11,8 +11,6 @@ const ManagePost = () => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [volunteers, setVolunteers] = useState([]);
 
-  const { user } = useContext(AuthContext);
-  console.log(user.accessToken);
 
   useEffect(() => {
     const fetchData = async () => {
