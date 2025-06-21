@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 const BeAVolunteers = ({ post, onClose }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
-    console.log(post)
 
   if (!post) return null;
 

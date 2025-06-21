@@ -347,7 +347,7 @@ const ManagePost = () => {
 
 
 
-          <section>
+          <section className="my-6">
               
      <h2 className="text-2xl font-semibold mb-6 text-[#014f86] border-l-4 border-[#0267af] pl-3">
            All Volunteer Post
@@ -385,15 +385,7 @@ const ManagePost = () => {
 </div>
 
 
-
-
 </section>
-
-
-
-
-
-
 
 
       </div>
