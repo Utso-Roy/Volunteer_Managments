@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { CiCalendarDate } from "react-icons/ci";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const VolunteerNeed = () => {
@@ -68,16 +70,17 @@ const VolunteerNeed = () => {
               />
               <div className="p-6 space-y-3">
                 <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
-                <p className="text-gray-600 text-sm">
-                  <span className="font-semibold">📍 Location:</span>{" "}
+                <p className="text-gray-600 flex gap-1 items-center text-sm">
+                  <span className="font-semibold flex gap-1 items-center"><FaLocationDot /> Location:</span>{" "}
                   {v.location}
                 </p>
                 <p className="text-gray-600 text-sm">
                   <span className="font-semibold">🗂️ Category:</span>{" "}
                   {v.category}
                 </p>
-                <p className="text-gray-600 text-sm">
-                  <span className="font-semibold">📅 Deadline:</span>{" "}
+                      <p className="text-gray-600 flex gap-1 items-center text-sm">
+                          <CiCalendarDate size={18} />
+                  <span className="font-semibold "> Deadline:</span>{" "}
                   {new Date(v.deadline).toLocaleDateString()}
                 </p>
                 <div className="pt-4">
