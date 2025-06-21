@@ -46,7 +46,7 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#509fd7f0] p-4 flex items-center justify-center">
+    <div className="min-h-screen bg-[#509fd7f0] dark:bg-[#1d232a] dark:border-2 my-2 dark:border-blue-300 p-4 flex items-center justify-center">
       <form
         onSubmit={handleAddPost}
         className="space-y-4 w-full max-w-xl p-6 shadow-md bg-white rounded-xl"

@@ -1,8 +1,8 @@
 module.exports = {
-  darkMode: "class",  
+  darkMode: ['class', '[data-theme="dark"]'],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "cupcake", "emerald"], 
+    themes: ["light", "dark"],
   },
 };

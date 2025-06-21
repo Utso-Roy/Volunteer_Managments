@@ -250,54 +250,54 @@ const ManagePost = () => {
           </h2>
 
           {postData.length === 0 ? (
-            <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-5 rounded">
+            <div className="bg-blue-100  border-l-4 border-blue-500 text-blue-800 p-5 rounded">
               No volunteer requests available.
             </div>
           ) : (
             <div className="overflow-hidden rounded-xl border border-gray-200 shadow-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gradient-to-r from-[#0267af] to-[#014f86]">
+                <thead className="bg-[#0267af] dark:bg-[#1d232a] ">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-left text-sm dark:text-white font-semibold text-white">
                       Title
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-left text-sm dark:text-white font-semibold text-white">
                       Organizer
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-left text-sm dark:text-white font-semibold text-white">
                       Category
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-left text-sm dark:text-white font-semibold text-white">
                       Deadline
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-left text-sm dark:text-white font-semibold text-white">
                       Volunteers Needed
                     </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-white">
+                    <th className="px-6 py-4 text-center text-sm dark:text-white font-semibold text-white">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 dark:bg-[#1d232a]  bg-white">
                   {postData.map((post) => (
                     <tr
                       key={post._id}
-                      className="transition-all duration-150 hover:bg-gray-50/90"
+                      className="transition-all duration-150 dark:hover:bg-blue-300 hover:bg-gray-50/90"
                     >
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 text-sm font-medium dark:text-white text-gray-900">
                         {post.title}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm dark:text-white text-gray-700">
                         {post.organizerName}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm dark:text-white text-gray-700">
                         {post.category}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm dark:text-white text-gray-700">
                         <FaRegCalendarCheck className="inline mr-1 text-[#014f86]" />
                         {new Date(post.deadline).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 dark:text-white text-sm text-gray-700">
                         {post.volunteersNeeded}
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -307,7 +307,7 @@ const ManagePost = () => {
                               setSelectedPost(post);
                               setIsUpdateModalOpen(true);
                             }}
-                            className="bg-[#0267af] cursor-pointer text-white px-3 py-1.5 rounded hover:bg-[#0267af90]"
+                            className="bg-[#0267af] cursor-pointer dark:text-white text-white px-3 py-1.5 rounded hover:bg-[#0267af90]"
                           >
                             <FaEdit className="inline mr-1" /> Edit
                           </button>
@@ -329,7 +329,7 @@ const ManagePost = () => {
 
         {isUpdateModalOpen && selectedPost && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md relative">
+            <div className="bg-white  p-6 rounded-lg shadow-xl w-full max-w-md relative">
               <button
                 onClick={() => setIsUpdateModalOpen(false)}
                 className="absolute top-2 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
@@ -397,7 +397,7 @@ const ManagePost = () => {
               {volunteers.map((singleData) => (
                 <div
                   key={singleData._id}
-                  className="card bg-base-100 p-4 shadow-sm"
+                  className="card bg-base-100 dark:border-2 dark:border-blue-300   p-4 shadow-sm"
                 >
                   <figure>
                     <img src={singleData.thumbnail} alt="Volunteer" />

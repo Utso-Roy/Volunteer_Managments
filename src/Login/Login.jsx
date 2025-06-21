@@ -69,8 +69,8 @@ const handleGoogleLogin = () => {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-md rounded-xl p-8 w-full max-w-md">
+    <div className="min-h-screen flex dark:bg-[#1d232a] my-4 dark:border-2 dark:border-blue-300 items-center justify-center bg-gray-100 px-4">
+      <div className="bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 shadow-md rounded-xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-[#0a72ba] mb-6">
           Welcome Back
         </h2>

@@ -65,7 +65,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky top-0 z-[1000] my-2 bg-base-100 shadow-sm backdrop-blur-md">
+    <div className="navbar sticky top-0 z-[1000] my-2 bg-base-100 dark:border-2 dark:border-blue-300 shadow-sm backdrop-blur-md">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -155,7 +155,7 @@ const Navbar = () => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xs bg-gray-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 p-2 shadow-2xs bg-gray-100 rounded-box w-52"
               >
                 <li className="hover:bg-[#0267af] hover:text-white font-semibold">
                   <Link to="/add-volunteer">Add Volunteer Need Post</Link>

@@ -61,7 +61,7 @@ const VolunteerNeed = () => {
           {volunteers.map((v, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
+              className="bg-white dark:bg-[#1d232a]  rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
             >
               <img
                 src={v.thumbnail}
@@ -70,15 +70,15 @@ const VolunteerNeed = () => {
               />
               <div className="p-6 space-y-3">
                 <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
-                <p className="text-gray-600 flex gap-1 items-center text-sm">
+                <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
                   <span className="font-semibold flex gap-1 items-center"><FaLocationDot /> Location:</span>{" "}
                   {v.location}
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-white text-sm">
                   <span className="font-semibold">🗂️ Category:</span>{" "}
                   {v.category}
                 </p>
-                      <p className="text-gray-600 flex gap-1 items-center text-sm">
+                      <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
                           <CiCalendarDate size={18} />
                   <span className="font-semibold "> Deadline:</span>{" "}
                   {new Date(v.deadline).toLocaleDateString()}

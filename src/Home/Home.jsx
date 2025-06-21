@@ -14,7 +14,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setVolunteerPosts(data))
       .catch((err) => console.error("Error loading volunteer data:", err));
-  },[]);
+  }, []);
 
   const settings = {
     dots: true,
@@ -31,7 +31,7 @@ const Home = () => {
     <div className="space-y-12">
       <div className="w-full mx-auto my-6 rounded-xl overflow-hidden shadow-xl">
         <Slider {...settings}>
-          <div className="bg-[#0a72ba] text-white flex justify-center items-center py-20 p-8">
+          <div className="bg-[#0a72ba] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 text-white flex justify-center items-center py-20 p-8">
             <h2 className="text-4xl text-center font-bold">
               Join Hands to Make a Difference
             </h2>
@@ -39,7 +39,7 @@ const Home = () => {
               Become a volunteer and serve your community today.
             </p>
           </div>
-          <div className="bg-[#38b6ff] text-white flex  justify-center items-center py-20 p-8">
+          <div className="bg-[#38b6ff] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 text-white flex  justify-center items-center py-20 p-8">
             <h2 className="text-4xl text-center font-bold">
               Urgent Volunteers Needed
             </h2>
@@ -47,7 +47,7 @@ const Home = () => {
               We need helping hands for our upcoming event.
             </p>
           </div>
-          <div className="bg-[#2a9d8f] text-white flex  justify-center items-center py-20 p-8">
+          <div className="bg-[#2a9d8f] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 text-white flex  justify-center items-center py-20 p-8">
             <h2 className="text-4xl text-center font-bold">
               Every Small Help Counts
             </h2>
@@ -87,7 +87,7 @@ const Home = () => {
         <div>
           {isTableLayout ? (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded">
+              <table className="min-w-full divide-y divide-gray-200 dark:bg-[#1d232a] bg-white shadow-md rounded">
                 <thead className="bg-[#0267af] text-white">
                   <tr>
                     <th className="px-4 py-2 text-left">Title</th>
@@ -98,7 +98,7 @@ const Home = () => {
                 </thead>
                 <tbody>
                   {volunteerPosts.map((item) => (
-                    <tr key={item._id} className="border-b hover:bg-gray-50">
+                  <tr key={item._id} className="border-b hover:bg-gray-50 dark:hover:text-white dark:hover:bg-[#0267af]">
                       <td className="px-4 py-2">{item.title}</td>
                       <td className="px-4 py-2">{item.category}</td>
                       <td className="px-4 py-2">
@@ -115,7 +115,7 @@ const Home = () => {
               {volunteerPosts.map((post) => (
                 <motion.div
                   key={post._id}
-                  className="card bg-white shadow-md rounded-lg overflow-hidden"
+                  className="card bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 shadow-md rounded-lg overflow-hidden"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -129,7 +129,7 @@ const Home = () => {
                       {post.title}
                     </h3>
                     <p className="text-sm">Category: {post.category}</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm dark:text-white text-gray-600">
                       Deadline: {new Date(post.deadline).toLocaleDateString()}
                     </p>
                     <Link to={`/volunteer-details/${post._id}`}>
@@ -155,30 +155,30 @@ const Home = () => {
       </div>
 
       <motion.div
-        className="bg-[#f0f8ff] p-8 rounded-lg text-center"
+        className="bg-[#f0f8ff] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 p-8 rounded-lg text-center"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-[#0a72ba] mb-4">
+        <h2 className="text-3xl dark:text-white font-bold text-[#0a72ba] mb-4">
           Why Volunteer With Us?
         </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto">
+        <p className="text-gray-700 dark:text-white max-w-2xl mx-auto">
           Volunteering with us means making real impact. Whether you're planting
           trees, teaching kids, or helping in disasters — your time matters.
         </p>
       </motion.div>
 
       <motion.div
-        className="bg-[#e0f7fa] p-8 my-7 rounded-lg text-center"
+        className="bg-[#e0f7fa]  dark:bg-[#1d232a] dark:border-2 dark:border-blue-300  p-8 my-7 rounded-lg text-center"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-3xl font-bold text-[#0a72ba] mb-4">
+        <h2 className="text-3xl font-bold dark:text-white text-[#0a72ba] mb-4">
           Success Stories
         </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto">
+        <p className="text-gray-700 dark:text-white max-w-2xl mx-auto">
           From rebuilding communities to changing lives — read real stories from
           our amazing volunteers who made a difference.
         </p>
