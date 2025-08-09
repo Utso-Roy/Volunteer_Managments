@@ -43,10 +43,10 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#509fd7f0] dark:bg-[#1d232a] dark:border-2 my-2 dark:border-blue-300 p-4 flex items-center justify-center">
+    <div className="min-h-screen bg-base-200 dark:bg-[#1d232a] dark:border-2 my-2 dark:border-blue-300 p-4 flex items-center justify-center">
       <form
         onSubmit={handleAddPost}
-        className="space-y-4 w-full max-w-xl p-6 shadow-md bg-white rounded-xl"
+        className="space-y-4 w-full max-w-xl p-6 shadow-md bg-white dark:bg-gray-700 rounded-xl"
       >
         <input
           type="text"
@@ -100,7 +100,7 @@ const AddVolunteer = () => {
         />
 
         <div className="w-full">
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 dark:text-white font-medium text-gray-700">
             Deadline
           </label>
           <input

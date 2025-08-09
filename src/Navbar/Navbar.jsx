@@ -141,7 +141,7 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full relative">
+                <div className="w-10 border-2 border-[#0267af] rounded-full relative">
                                   <img src={user?.photoURL} alt="User" />
                                   
                               </div>
@@ -149,7 +149,7 @@ const Navbar = () => {
               </div>
                            
 
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 whitespace-nowrap">
+              <div className="absolute -bottom-10 border border-blue-400 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 whitespace-nowrap">
                 {user?.displayName || "No Name"}
               </div>
 
