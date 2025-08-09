@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
+import Loading from "../Loading/Loading";
 
 const VolunteerNeed = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,10 +12,10 @@ const VolunteerNeed = () => {
 
   useEffect(() => {
     const url = query
-      ? `https://volunteer-server-six.vercel.app/volunteerAddPosts?title=${encodeURIComponent(
+      ? `http://localhost:3000/volunteerAddPosts?title=${encodeURIComponent(
           query
         )}`
-      : "https://volunteer-server-six.vercel.app/volunteerAddPosts";
+      : "http://localhost:3000/volunteerAddPosts";
 
     setLoading(true);
     fetch(url)
@@ -51,8 +52,8 @@ const VolunteerNeed = () => {
       </div>
 
       {loading ? (
-        <div className="text-center my-12">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
+        <div>
+          <Loading></Loading>
         </div>
       ) : volunteers.length === 0 ? (
         <p className="text-gray-500 text-center">No volunteer posts found.</p>
@@ -71,15 +72,17 @@ const VolunteerNeed = () => {
               <div className="p-6 space-y-3">
                 <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
                 <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
-                  <span className="font-semibold flex gap-1 items-center"><FaLocationDot /> Location:</span>{" "}
+                  <span className="font-semibold flex gap-1 items-center">
+                    <FaLocationDot /> Location:
+                  </span>{" "}
                   {v.location}
                 </p>
                 <p className="text-gray-600 dark:text-white text-sm">
                   <span className="font-semibold">🗂️ Category:</span>{" "}
                   {v.category}
                 </p>
-                      <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
-                          <CiCalendarDate size={18} />
+                <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
+                  <CiCalendarDate size={18} />
                   <span className="font-semibold "> Deadline:</span>{" "}
                   {new Date(v.deadline).toLocaleDateString()}
                 </p>

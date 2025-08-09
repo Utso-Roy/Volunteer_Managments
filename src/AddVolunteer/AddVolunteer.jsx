@@ -22,14 +22,11 @@ const AddVolunteer = () => {
     };
 
     try {
-      const res = await fetch(
-        "https://volunteer-server-six.vercel.app/volunteerAddPosts",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(postData),
-        }
-      );
+      const res = await fetch("http://localhost:3000/volunteerAddPosts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postData),
+      });
 
       const data = await res.json();
 

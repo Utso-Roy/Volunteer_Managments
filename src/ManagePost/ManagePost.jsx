@@ -11,13 +11,10 @@ const ManagePost = () => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [volunteers, setVolunteers] = useState([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://volunteer-server-six.vercel.app/volunteerRequest"
-        );
+        const response = await fetch("http://localhost:3000/volunteerRequest");
         if (!response.ok) throw new Error("Failed to fetch data");
         const data = await response.json();
         setPostData(data);
@@ -32,7 +29,7 @@ const ManagePost = () => {
   }, []);
 
   useEffect(() => {
-    fetch("https://volunteer-server-six.vercel.app/volunteerAddPosts")
+    fetch("http://localhost:3000/volunteerAddPosts")
       .then((res) => res.json())
       .then((data) => setVolunteers(data.data));
   }, []);
@@ -52,7 +49,7 @@ const ManagePost = () => {
 
     try {
       const response = await fetch(
-        `https://volunteer-server-six.vercel.app/volunteerAddPosts/${id}`,
+        `http://localhost:3000/volunteerAddPosts/${id}`,
         {
           method: "DELETE",
         }
@@ -111,7 +108,7 @@ const ManagePost = () => {
 
     try {
       const res = await fetch(
-        `https://volunteer-server-six.vercel.app/volunteerAddPosts/${post._id}`,
+        `http://localhost:3000/volunteerAddPosts/${post._id}`,
         {
           method: "PUT",
           headers: {
@@ -159,7 +156,7 @@ const ManagePost = () => {
 
     try {
       const response = await fetch(
-        `https://volunteer-server-six.vercel.app/volunteerRequest/${id}`,
+        `http://localhost:3000/volunteerRequest/${id}`,
         {
           method: "DELETE",
         }
@@ -195,7 +192,7 @@ const ManagePost = () => {
 
     try {
       const res = await fetch(
-        `https://volunteer-server-six.vercel.app/volunteerRequest/${selectedPost._id}`,
+        `http://localhost:3000/volunteerRequest/${selectedPost._id}`,
         {
           method: "PUT",
           headers: {

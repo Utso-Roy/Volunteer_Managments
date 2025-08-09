@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router"; 
+import { IoArrowBack } from "react-icons/io5"; 
 import BeAVolunteers from "../BeAVolunteers/BeAVolunteers";
+import Loading from "../Loading/Loading";
 
 const AllVolunteerDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [volunteerData, setVolunteerData] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch("https://volunteer-server-six.vercel.app/volunteerAddPosts")
+    fetch("http://localhost:3000/volunteerAddPosts")
       .then((res) => res.json())
       .then((data) => setVolunteerData(data.data || data));
   }, []);
@@ -21,47 +24,64 @@ const AllVolunteerDetails = () => {
 
   if (!post) {
     return (
-      <p className="text-center text-gray-500 mt-10">
-        Loading volunteer details...
-      </p>
+     <Loading></Loading>
     );
   }
 
   return (
-    <div className="max-w-2xl  mx-auto p-6">
-      <div className="bg-white border-2 border-[#0267af] p-4 rounded-lg shadow-lg overflow-hidden">
-        <img
-          src={post.thumbnail}
-          alt={post.title}
-          className="w-full h-64 object-cover"
-        />
-        <div className=" my-4 space-y-2">
-          <h2 className="text-3xl font-bold text-[#0267af]">{post.title}</h2>
-          <p className="text-gray-700">
-            <strong>Description:</strong> {post.description}
-          </p>
-          <p className="text-gray-700">
-            <strong>Category:</strong> {post.category}
-          </p>
-          <p className="text-gray-700">
-            <strong>Location:</strong> {post.location}
-          </p>
-          <p className="text-gray-700">
-            <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
-          </p>
-          <p className="text-gray-700">
-            <strong>Deadline:</strong>{" "}
-            {new Date(post.deadline).toLocaleDateString()}
-          </p>
-          <p className="text-gray-700">
-            <strong>Organizer:</strong> {post.organizerName} (
-            {post.organizerEmail})
-          </p>
+    <div className="max-w-5xl my-4 mx-auto p-6">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="flex items-center cursor-pointer gap-2  mb-4 text-[#0267af] dark:text-blue-300 hover:underline"
+      >
+        <IoArrowBack size={22} />
+        Back
+      </button>
 
-          <div className="pt-4">
+      <div className="bg-base-200  dark:bg-[#1d232a] dark:border-blue-300 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+        
+        {/* Image Section */}
+        <div className="md:w-1/2">
+          <img
+            src={post?.thumbnail}
+            alt={post?.title}
+            className="w-full h-64 md:h-full object-cover"
+          />
+        </div>
+
+        {/* Text Section */}
+        <div className="md:w-1/2 p-6 flex flex-col justify-between">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-bold text-[#0267af] dark:text-blue-300">
+              {post?.title}
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Description:</strong> {post?.description}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Category:</strong> {post?.category}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Location:</strong> {post?.location}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Volunteers Needed:</strong> {post?.volunteersNeeded}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Deadline:</strong>{" "}
+              {new Date(post?.deadline).toLocaleDateString()}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Organizer:</strong> {post?.organizerName} (
+              {post?.organizerEmail})
+            </p>
+          </div>
+
+          <div className="pt-6">
             <button
               onClick={handleVolunteerClick}
-              className="mt-6 w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] transition"
+              className="w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] transition"
             >
               Be a Volunteer
             </button>

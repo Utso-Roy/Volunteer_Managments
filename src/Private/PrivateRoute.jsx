@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Navigate, useLocation } from 'react-router';
+import Loading from '../Loading/Loading';
 
 const PrivateRoute = ({ children }) => {
 
@@ -12,7 +13,7 @@ const PrivateRoute = ({ children }) => {
     
         return (
             
-            <span className="loading loading-bars loading-xl"></span>
+          <Loading></Loading>
         )
 }
 

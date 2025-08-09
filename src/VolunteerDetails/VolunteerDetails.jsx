@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Swal from "sweetalert2";
 import BeAVolunteers from "../BeAVolunteers/BeAVolunteers";
+import Loading from "../Loading/Loading";
 
 const VolunteerDetails = () => {
   const { id } = useParams();
@@ -9,7 +9,7 @@ const VolunteerDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(`https://volunteer-server-six.vercel.app/volunteerSingleData`)
+    fetch(`http://localhost:3000/volunteerSingleData`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.find((item) => item._id === id);
@@ -23,54 +23,71 @@ const VolunteerDetails = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white rounded-lg shadow-lg">
+    <div className="max-w-5xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white dark:bg-gray-900 dark:border-[#339cd5] rounded-lg shadow-lg transition-colors duration-300">
       {!post ? (
-        <span className="loading block mx-auto loading-bars loading-xl"></span>
+        <Loading />
       ) : (
-        <>
-          <img
-            src={post.thumbnail}
-            alt={post.title}
-            className="w-full h-64 object-cover rounded"
-          />
-
-          <h2 className="text-3xl font-bold mt-6">{post.title}</h2>
-
-          <div className="mt-4 space-y-2 text-gray-700">
-            <p>
-              <strong>Category:</strong> {post.category}
-            </p>
-            <p>
-              <strong>Description:</strong> {post.description}
-            </p>
-            <p>
-              <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
-            </p>
-            <p>
-              <strong>Deadline:</strong>{" "}
-              {new Date(post.deadline).toLocaleString()}
-            </p>
-            <p>
-              <strong>Organizer Name:</strong> {post.organizerName}
-            </p>
-            <p>
-              <strong>Organizer Email:</strong>{" "}
-              <a
-                href={`mailto:${post.organizerEmail}`}
-                className="text-blue-600 underline"
-              >
-                {post.organizerEmail}
-              </a>
-            </p>
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Image Section */}
+          <div className="lg:w-1/2">
+            <img
+              src={post?.thumbnail}
+              alt={post?.title}
+              className="w-full h-64 sm:h-80 lg:h-full object-cover rounded"
+            />
           </div>
 
-          <button
-            onClick={handleVolunteerClick}
-            className="mt-6 w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] transition"
-          >
-            Be a Volunteer
-          </button>
-        </>
+          {/* Text Section */}
+          <div className="lg:w-1/2 flex flex-col justify-between">
+            <div>
+              <h2 className="text-3xl font-bold mt-2 lg:mt-0 dark:text-white">
+                {post?.title}
+              </h2>
+
+              <div className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+                <p>
+                  <strong className="dark:text-white">Category:</strong>{" "}
+                  {post?.category}
+                </p>
+                <p>
+                  <strong className="dark:text-white">Description:</strong>{" "}
+                  {post?.description}
+                </p>
+                <p>
+                  <strong className="dark:text-white">
+                    Volunteers Needed:
+                  </strong>{" "}
+                  {post?.volunteersNeeded}
+                </p>
+                <p>
+                  <strong className="dark:text-white">Deadline:</strong>{" "}
+                  {new Date(post?.deadline).toLocaleString()}
+                </p>
+                <p>
+                  <strong className="dark:text-white">Organizer Name:</strong>{" "}
+                  {post?.organizerName}
+                </p>
+                <p>
+                  <strong className="dark:text-white">Organizer Email:</strong>{" "}
+                  <a
+                    href={`mailto:${post?.organizerEmail}`}
+                    className="text-blue-600 dark:text-blue-400 underline"
+                  >
+                    {post?.organizerEmail}
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            {/* Button */}
+            <button
+              onClick={handleVolunteerClick}
+              className="mt-6 w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] dark:hover:bg-[#339cd5] transition"
+            >
+              Be a Volunteer
+            </button>
+          </div>
+        </div>
       )}
 
       {showModal && (

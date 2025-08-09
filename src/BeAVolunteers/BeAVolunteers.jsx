@@ -32,16 +32,13 @@ const BeAVolunteers = ({ post, onClose }) => {
     };
 
     try {
-      const res = await fetch(
-        "https://volunteer-server-six.vercel.app/volunteerRequest",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+      const res = await fetch("http://localhost:3000/volunteerRequest", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
       const data = await res.json();
 

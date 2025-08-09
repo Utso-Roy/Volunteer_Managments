@@ -10,7 +10,7 @@ const Home = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [isTableLayout, setIsTableLayout] = useState(false);
   useEffect(() => {
-    fetch("https://volunteer-server-six.vercel.app/volunteerSingleData")
+    fetch("http://localhost:3000/volunteerSingleData")
       .then((res) => res.json())
       .then((data) => setVolunteerPosts(data))
       .catch((err) => console.error("Error loading volunteer data:", err));
@@ -63,85 +63,39 @@ const Home = () => {
           <h2 className="font-bold text-[2rem] text-[#0a72ba] mb-6">
             Volunteer Needs Now
           </h2>
-
-          <div className="flex gap-3 items-center">
-            <FaArrowRight size={20} color="#0a72ba" className="mb-5" />
-
-            <button
-              onClick={() => setIsTableLayout(!isTableLayout)}
-              className="flex items-center gap-2 px-3 py-2 cursor-pointer bg-[#0267af] text-white rounded hover:bg-[#014f86] mb-5"
-            >
-              {isTableLayout ? (
-                <>
-                  <FaThLarge /> Show as Cards
-                </>
-              ) : (
-                <>
-                  <FaTable /> Show as Table
-                </>
-              )}
-            </button>
-          </div>
         </div>
 
         <div>
-          {isTableLayout ? (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 dark:bg-[#1d232a] bg-white shadow-md rounded">
-                <thead className="bg-[#0267af] text-white">
-                  <tr>
-                    <th className="px-4 py-2 text-left">Title</th>
-                    <th className="px-4 py-2 text-left">Category</th>
-                    <th className="px-4 py-2 text-left">Deadline</th>
-                    <th className="px-4 py-2 text-left">Volunteers</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {volunteerPosts.map((item) => (
-                  <tr key={item._id} className="border-b hover:bg-gray-50 dark:hover:text-white dark:hover:bg-[#0267af]">
-                      <td className="px-4 py-2">{item.title}</td>
-                      <td className="px-4 py-2">{item.category}</td>
-                      <td className="px-4 py-2">
-                        {new Date(item.deadline).toLocaleDateString()}
-                      </td>
-                      <td className="px-4 py-2">{item.volunteersNeeded}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {volunteerPosts.map((post) => (
-                <motion.div
-                  key={post._id}
-                  className="card bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 shadow-md rounded-lg overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <img
-                    src={post.thumbnail}
-                    alt={post.title}
-                    className="h-48 w-full object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-[#0a72ba]">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm">Category: {post.category}</p>
-                    <p className="text-sm dark:text-white text-gray-600">
-                      Deadline: {new Date(post.deadline).toLocaleDateString()}
-                    </p>
-                    <Link to={`/volunteer-details/${post._id}`}>
-                      <button className="mt-3 bg-[#0a72ba] text-white px-4 py-2 rounded hover:bg-[#014f86] transition">
-                        View Details
-                      </button>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            {volunteerPosts.map((post) => (
+              <motion.div
+                key={post._id}
+                className="card bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 shadow-md rounded-lg overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  className="h-48 w-full object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold text-[#0a72ba]">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm">Category: {post.category}</p>
+                  <p className="text-sm dark:text-white text-gray-600">
+                    Deadline: {new Date(post.deadline).toLocaleDateString()}
+                  </p>
+                  <Link to={`/volunteer-details/${post._id}`}>
+                    <button className="mt-3 bg-[#0a72ba] cursor-pointer text-white px-4 py-2 rounded hover:bg-[#014f86] transition">
+                      Details
+                    </button>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-6">
