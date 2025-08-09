@@ -236,7 +236,7 @@ const ManagePost = () => {
 
   return (
     <div className="space-y-4">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold text-center text-[#0267af] mb-12">
           Volunteer Request Posts
         </h1>

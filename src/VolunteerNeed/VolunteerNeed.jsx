@@ -3,6 +3,12 @@ import { CiCalendarDate } from "react-icons/ci";
 import { Link } from "react-router";
 import Loading from "../Loading/Loading";
 import { BiCategory } from "react-icons/bi";
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05 },
+};
 
 const VolunteerNeed = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,7 +45,7 @@ const VolunteerNeed = () => {
         <input
           type="text"
           placeholder="Search by title..."
-          className="input input-neutral w-full max-w-sm"
+          className="input input-neutral border-[#0267af] dark:border-[#0267af]  w-full max-w-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -52,17 +58,20 @@ const VolunteerNeed = () => {
       </div>
 
       {loading ? (
-        <div>
-          <Loading></Loading>
-        </div>
+        <Loading />
       ) : volunteers.length === 0 ? (
         <p className="text-gray-500 text-center">No volunteer posts found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {volunteers.map((v, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white dark:bg-[#1d232a]  rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
+              className="bg-white dark:bg-[#1d232a] rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden dark:border-[#0267af] border border-gray-100"
+              variants={cardVariants}
+              initial="rest"
+              animate="rest"
+              whileHover="hover"
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <img
                 src={v?.thumbnail}
@@ -70,11 +79,13 @@ const VolunteerNeed = () => {
                 className="w-full h-52 object-cover"
               />
               <div className="p-6 space-y-3">
-                <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
-                
-                <p className="text-gray-600  flex gap-1 items-center  dark:text-white text-sm">
-                  <span className="font-semibold items-center flex gap-1"><BiCategory  size={16} /> Category : </span>{" "}
-                   {v?.category}
+                <h2 className="text-xl font-semibold text-[#0267af]">{v.title}</h2>
+
+                <p className="text-gray-600 flex gap-1 items-center dark:text-white text-sm">
+                  <span className="font-semibold items-center flex gap-1">
+                    <BiCategory size={16} /> Category :
+                  </span>{" "}
+                  {v?.category}
                 </p>
                 <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
                   <CiCalendarDate size={18} />
@@ -89,7 +100,7 @@ const VolunteerNeed = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}

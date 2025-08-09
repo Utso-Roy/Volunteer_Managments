@@ -24,7 +24,7 @@ const Home = () => {
   const sectionSpacing = "max-w-6xl mx-auto px-6 md:px-8 py-6 my-8";
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+    <div className="bg-gradient-to-r from-blue-50 via-base-200 to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
       {/* Full width slider */}
       <div className="w-full">
         <Sliders />
@@ -37,7 +37,7 @@ const Home = () => {
         </div>
 
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
             {volunteerPosts.map((post) => (
               <motion.div
                 key={post._id}

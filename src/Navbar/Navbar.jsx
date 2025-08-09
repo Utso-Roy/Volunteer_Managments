@@ -3,6 +3,8 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaArrowDown } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import { IoLogOut } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOutUser, setUser } = useContext(AuthContext);
@@ -40,7 +42,7 @@ const Navbar = () => {
             isActive ? "text-[#0267af] font-bold" : ""
           }
         >
-           Volunteers Post
+           Volunteers Need Post
         </NavLink>
       </li>
       <li>
@@ -95,7 +97,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky top-0 z-[1000] my-2 bg-base-100 dark:border-2 dark:border-blue-300 shadow-sm backdrop-blur-md">
+    <div className="navbar sticky top-0 z-[1000] my-2 bg-base-100 dark:bg-gray-800 shadow-sm backdrop-blur-md">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -198,12 +200,15 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 p-2 shadow-2xs bg-gray-100 rounded-box w-52"
               >
+                
+               
                 <li className="hover:bg-[#0267af] hover:text-white font-semibold">
-                  <Link to="/add-volunteer">Add Volunteer Need Post</Link>
+                  <Link to="/dashboard">
+                    <MdDashboard  size={16}/>
+                    Dashboard</Link>
                 </li>
-                <li className="hover:bg-[#0267af] hover:text-white font-semibold">
-                  <Link to="/manage_post/:id">Manage My Posts</Link>
-                </li>
+
+               
 
                 <li>
 
@@ -211,7 +216,8 @@ const Navbar = () => {
               onClick={handleLogOut}
               className=" hover:bg-[#0267af] hover:text-white font-semibold"
             >
-              Logout
+            <IoLogOut size={20} />
+  Logout
             </button>
                 </li>
               </ul>
