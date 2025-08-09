@@ -29,7 +29,7 @@ const AllVolunteerDetails = () => {
   }
 
   return (
-    <div className="max-w-5xl my-4 mx-auto p-6">
+    <div className="max-w-6xl bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 my-4 mx-auto p-6">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
@@ -39,7 +39,7 @@ const AllVolunteerDetails = () => {
         Back
       </button>
 
-      <div className="bg-base-200  dark:bg-[#1d232a] dark:border-blue-300 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <div className=" dark:bg-[#1d232a] dark:border-blue-300 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
         
         {/* Image Section */}
         <div className="md:w-1/2">
@@ -81,7 +81,7 @@ const AllVolunteerDetails = () => {
           <div className="pt-6">
             <button
               onClick={handleVolunteerClick}
-              className="w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] transition"
+              className="w-full btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white"
             >
               Be a Volunteer
             </button>

@@ -24,7 +24,7 @@ const Home = () => {
   const sectionSpacing = "max-w-6xl mx-auto px-6 md:px-8 py-6 my-8";
 
   return (
-    <div className="bg-base-200">
+    <div className="bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
       {/* Full width slider */}
       <div className="w-full">
         <Sliders />
@@ -50,14 +50,14 @@ const Home = () => {
                   alt={post.title}
                   className="h-48 w-full object-cover"
                 />
-                <div className="p-4">
+                <div className="p-4 space-y-2">
                   <h3 className="text-xl font-semibold text-[#0a72ba]">{post.title}</h3>
                   <p className="text-sm">Category: {post.category}</p>
                   <p className="text-sm dark:text-white text-gray-600">
                     Deadline: {new Date(post.deadline).toLocaleDateString()}
                   </p>
                   <Link to={`/volunteer-details/${post._id}`}>
-                    <button className="mt-3 bg-[#0a72ba] cursor-pointer text-white px-4 py-2 rounded hover:bg-[#014f86] transition">
+                    <button className="w-full btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white">
                       Details
                     </button>
                   </Link>

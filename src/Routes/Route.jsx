@@ -16,6 +16,8 @@ import BeAVolunteers from '../BeAVolunteers/BeAVolunteers';
 import ManagePost from '../ManagePost/ManagePost';
 import AllVolunteerDetails from '../AllVolunteerDetails/AllVolunteerDetails';
 import Error from '../Error/Error';
+import TheGuide from '../Page/TheGuide';
+import Contact from '../Page/Contact';
 
 
 export const router = createBrowserRouter([
@@ -41,6 +43,14 @@ export const router = createBrowserRouter([
       {
         path: '/volunteer-needs',
         element : <PrivateRoute> <VolunteerNeed> </VolunteerNeed></PrivateRoute>
+      },
+      {
+        path: '/volunteerGuide',
+        element : <PrivateRoute> <TheGuide> </TheGuide></PrivateRoute>
+      },
+      {
+        path: '/contact',
+        element : <PrivateRoute> <Contact> </Contact></PrivateRoute>
       },
       
       {

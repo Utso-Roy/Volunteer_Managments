@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CiCalendarDate } from "react-icons/ci";
-import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 import Loading from "../Loading/Loading";
+import { BiCategory } from "react-icons/bi";
 
 const VolunteerNeed = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,7 +30,7 @@ const VolunteerNeed = () => {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold text-[#0267af] mb-6 text-center">
         All Volunteer Need Posts
       </h1>
@@ -58,28 +58,23 @@ const VolunteerNeed = () => {
       ) : volunteers.length === 0 ? (
         <p className="text-gray-500 text-center">No volunteer posts found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {volunteers.map((v, index) => (
             <div
               key={index}
               className="bg-white dark:bg-[#1d232a]  rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
             >
               <img
-                src={v.thumbnail}
-                alt={v.title}
+                src={v?.thumbnail}
+                alt={v?.title}
                 className="w-full h-52 object-cover"
               />
               <div className="p-6 space-y-3">
                 <h2 className="text-xl font-bold text-[#0267af]">{v.title}</h2>
-                <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
-                  <span className="font-semibold flex gap-1 items-center">
-                    <FaLocationDot /> Location:
-                  </span>{" "}
-                  {v.location}
-                </p>
-                <p className="text-gray-600 dark:text-white text-sm">
-                  <span className="font-semibold">🗂️ Category:</span>{" "}
-                  {v.category}
+                
+                <p className="text-gray-600  flex gap-1 items-center  dark:text-white text-sm">
+                  <span className="font-semibold items-center flex gap-1"><BiCategory  size={16} /> Category : </span>{" "}
+                   {v?.category}
                 </p>
                 <p className="text-gray-600 dark:text-white flex gap-1 items-center text-sm">
                   <CiCalendarDate size={18} />
@@ -88,7 +83,7 @@ const VolunteerNeed = () => {
                 </p>
                 <div className="pt-4">
                   <Link to={`/all_Volunteer_details/${v._id}`}>
-                    <button className="w-full btn btn-outline btn-primary hover:bg-[#0267af] hover:text-white">
+                    <button className="w-full btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white">
                       View Details
                     </button>
                   </Link>

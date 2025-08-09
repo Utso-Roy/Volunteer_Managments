@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import { FaArrowLeft } from "react-icons/fa";
 import BeAVolunteers from "../BeAVolunteers/BeAVolunteers";
 import Loading from "../Loading/Loading";
 
 const VolunteerDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -23,7 +25,16 @@ const VolunteerDetails = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 my-10 border-2 border-[#0267af] bg-white dark:bg-gray-900 dark:border-[#339cd5] rounded-lg shadow-lg transition-colors duration-300">
+    <div className="max-w-5xl mx-auto p-6 my-10 bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-lg shadow-lg transition-colors duration-300">
+      
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="flex items-center gap-2 text-[#0267af] dark:text-blue-400 font-semibold mb-4 hover:underline"
+      >
+        <FaArrowLeft /> Back
+      </button>
+
       {!post ? (
         <Loading />
       ) : (
@@ -82,7 +93,7 @@ const VolunteerDetails = () => {
             {/* Button */}
             <button
               onClick={handleVolunteerClick}
-              className="mt-6 w-full bg-[#0267af] cursor-pointer text-white font-semibold py-3 rounded hover:bg-[#0267afdc] dark:hover:bg-[#339cd5] transition"
+              className="mt-6 w-full  cursor-pointer font-semibold py-3 rounded btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white"
             >
               Be a Volunteer
             </button>
