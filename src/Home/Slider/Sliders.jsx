@@ -35,7 +35,7 @@ const Sliders = () => {
   ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto my-8 overflow-hidden shadow-lg">
+    <div className="w-full max-w-6xl mx-auto my-4 overflow-hidden shadow-lg">
       <Slider {...settings}>
         {slides.map(({ image, title, subtitle }, index) => (
           <div key={index} className="relative h-96 md:h-[500px]">

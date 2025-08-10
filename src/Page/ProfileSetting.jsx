@@ -9,7 +9,6 @@ const ProfileSetting = () => {
   return (
     <div className="min-h-screen  bg-gray-100 dark:bg-gray-900 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-md w-full text-center">
-        {/* Profile Image */}
         <div className="flex justify-center mb-5">
           <img
             src={photoURL || 'https://i.pravatar.cc/150?img=3'}
@@ -18,7 +17,6 @@ const ProfileSetting = () => {
           />
         </div>
 
-        {/* User Name */}
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
           {displayName || 'No Name Provided'}
         </h2>

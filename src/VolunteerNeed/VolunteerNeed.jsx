@@ -21,10 +21,10 @@ const VolunteerNeed = () => {
 
   useEffect(() => {
     const url = query
-      ? `http://localhost:3000/volunteerPostData?title=${encodeURIComponent(
+      ? `https://volunteer-server-six.vercel.app/volunteerPostData?title=${encodeURIComponent(
           query
         )}&page=${page}&limit=12`
-      : `http://localhost:3000/volunteerPostData?page=${page}&limit=6`;
+      : `https://volunteer-server-six.vercel.app/volunteerPostData?page=${page}&limit=6`;
 
     setLoading(true);
     fetch(url)
@@ -38,7 +38,7 @@ const VolunteerNeed = () => {
   }, [query, page]);
 
   const handleSearch = () => {
-    setPage(1); 
+    setPage(1);
     setQuery(searchTerm);
   };
 

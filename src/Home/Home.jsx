@@ -15,13 +15,13 @@ const Home = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/volunteerSingleData")
+    fetch("https://volunteer-server-six.vercel.app/volunteerSingleData")
       .then((res) => res.json())
       .then((data) => setVolunteerPosts(data))
       .catch((err) => console.error("Error loading volunteer data:", err));
   }, []);
 
-  const sectionSpacing = "max-w-6xl mx-auto px-6 md:px-8 py-6 my-8";
+  const sectionSpacing = "max-w-6xl mx-auto px-6 md:px-8 py-6 my-1";
 
   return (
     <div className="bg-gradient-to-r from-blue-50 via-base-200 to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
@@ -33,7 +33,9 @@ const Home = () => {
       {/* Volunteer Needs Now Section */}
       <div className={sectionSpacing}>
         <div className="flex items-center justify-center gap-3 ">
-          <h2 className="font-bold mb-5 text-[2rem] text-[#0a72ba]">Volunteer Needs Now</h2>
+          <h2 className="font-bold mb-5 text-[2rem] text-[#0a72ba]">
+            Volunteer Needs Now
+          </h2>
         </div>
 
         <div>
@@ -51,7 +53,9 @@ const Home = () => {
                   className="h-48 w-full object-cover"
                 />
                 <div className="p-4 space-y-2">
-                  <h3 className="text-xl font-semibold text-[#0a72ba]">{post.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#0a72ba]">
+                    {post.title}
+                  </h3>
                   <p className="text-sm">Category: {post.category}</p>
                   <p className="text-sm dark:text-white text-gray-600">
                     Deadline: {new Date(post.deadline).toLocaleDateString()}
@@ -88,15 +92,14 @@ const Home = () => {
         <SuccessStories />
       </motion.div>
 
-      
       <motion.div
-  className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-left`}
-  initial={{ opacity: 0, scale: 0.8 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.8 }}
->
-  <FaqSection />
-</motion.div>
+        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-left`}
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <FaqSection />
+      </motion.div>
       {/* Call to Action Section */}
       <motion.div
         className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}

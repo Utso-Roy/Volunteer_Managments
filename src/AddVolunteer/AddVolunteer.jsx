@@ -22,11 +22,14 @@ const AddVolunteer = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/volunteerAddPosts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(postData),
-      });
+      const res = await fetch(
+        "https://volunteer-server-six.vercel.app/volunteerAddPosts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(postData),
+        }
+      );
 
       const data = await res.json();
 
@@ -48,7 +51,6 @@ const AddVolunteer = () => {
         onSubmit={handleAddPost}
         className="w-full max-w-xl p-6 shadow-md bg-white dark:bg-gray-700 rounded-xl"
       >
-
         {/* Use flex-wrap to allow wrapping on small screens */}
         <div className="flex flex-wrap gap-4">
           <input

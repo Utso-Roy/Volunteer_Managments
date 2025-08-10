@@ -14,7 +14,7 @@ const CallToAction = () => {
           Join hands with us to make a difference in your community. Your time and effort can change lives.
         </p>
         <button
-          onClick={() => navigate("/add-volunteer")}
+          onClick={() => navigate("/dashboard/add-volunteer")}
           className="bg-white cursor-pointer dark:bg-gray-800 text-[#0267af] dark:text-blue-600 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-lg sm:text-xl shadow-lg  dark:hover:bg-gray-200 transition"
         >
           Add a Volunteer Need Post

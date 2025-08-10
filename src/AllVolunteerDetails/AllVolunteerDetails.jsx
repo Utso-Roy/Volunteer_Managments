@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router"; 
-import { IoArrowBack } from "react-icons/io5"; 
+import { useParams, useNavigate } from "react-router";
+import { IoArrowBack } from "react-icons/io5";
 import BeAVolunteers from "../BeAVolunteers/BeAVolunteers";
 import Loading from "../Loading/Loading";
 
@@ -11,7 +11,7 @@ const AllVolunteerDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/volunteerAddPosts")
+    fetch("https://volunteer-server-six.vercel.app/volunteerAddPosts")
       .then((res) => res.json())
       .then((data) => setVolunteerData(data.data || data));
   }, []);
@@ -23,9 +23,7 @@ const AllVolunteerDetails = () => {
   };
 
   if (!post) {
-    return (
-     <Loading></Loading>
-    );
+    return <Loading></Loading>;
   }
 
   return (
@@ -40,7 +38,6 @@ const AllVolunteerDetails = () => {
       </button>
 
       <div className=" dark:bg-[#1d232a] dark:border-blue-300 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-        
         {/* Image Section */}
         <div className="md:w-1/2">
           <img

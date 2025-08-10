@@ -52,24 +52,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/volunteerGuide",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <TheGuide> </TheGuide>
-          </PrivateRoute>
-        ),
+        element: <TheGuide> </TheGuide>,
       },
       {
         path: "/contact",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Contact> </Contact>
-          </PrivateRoute>
-        ),
+        element: <Contact> </Contact>,
       },
 
-    
       {
         path: "/volunteer-details/:id",
         element: (
@@ -97,7 +86,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-     
+
       {
         path: "/all_Volunteer_details/:id",
         element: (
@@ -107,22 +96,20 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-     
     ],
   },
 
   {
-
-    path: '/dashboard',
+    path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     errorElement: <Error></Error>,
     children: [
       {
         index: true,
-        path :'/dashboard',
-        element :<Dashboard></Dashboard>
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
       },
-        {
+      {
         path: "/dashboard/add-volunteer",
         element: (
           <PrivateRoute>
@@ -131,8 +118,8 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    
-         {
+
+      {
         path: "/dashboard/volunteer_post",
         element: (
           <PrivateRoute>
@@ -141,7 +128,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-         {
+      {
         path: "/dashboard/volunteer_request",
         element: (
           <PrivateRoute>
@@ -150,7 +137,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-          {
+      {
         path: "/dashboard/profile",
         element: (
           <PrivateRoute>
@@ -159,10 +146,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-    ]
-  }
-
-
-
+    ],
+  },
 ]);

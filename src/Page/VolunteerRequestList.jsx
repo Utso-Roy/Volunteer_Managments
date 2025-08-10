@@ -13,7 +13,9 @@ const VolunteerRequestList = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await fetch("http://localhost:3000/volunteerRequest");
+        const res = await fetch(
+          "https://volunteer-server-six.vercel.app/volunteerRequest"
+        );
         if (!res.ok) throw new Error("Failed to fetch volunteer requests");
         const data = await res.json();
         setRequests(data);
@@ -41,12 +43,19 @@ const VolunteerRequestList = () => {
     if (!confirmResult.isConfirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/volunteerRequest/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://volunteer-server-six.vercel.app/volunteerRequest/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
       if (data.success) {
-        Swal.fire("Deleted!", "Your volunteer request has been deleted.", "success");
+        Swal.fire(
+          "Deleted!",
+          "Your volunteer request has been deleted.",
+          "success"
+        );
         setRequests((prev) => prev.filter((item) => item._id !== id));
       } else {
         Swal.fire("Failed", data.message || "Deletion failed.", "error");
@@ -69,7 +78,7 @@ const VolunteerRequestList = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/volunteerRequest/${selectedRequest._id}`,
+        `https://volunteer-server-six.vercel.app/volunteerRequest/${selectedRequest._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -82,7 +91,9 @@ const VolunteerRequestList = () => {
         Swal.fire("Updated!", "The request has been updated.", "success");
         setRequests((prev) =>
           prev.map((item) =>
-            item._id === selectedRequest._id ? { ...item, ...updatedRequest } : item
+            item._id === selectedRequest._id
+              ? { ...item, ...updatedRequest }
+              : item
           )
         );
         setIsUpdateModalOpen(false);
@@ -95,10 +106,7 @@ const VolunteerRequestList = () => {
     }
   };
 
-  if (loading)
-    return (
-     <Loading></Loading>
-    );
+  if (loading) return <Loading></Loading>;
   if (error)
     return (
       <div className="bg-red-100 border-l-4 border-red-500 text-red-800 p-4 max-w-4xl mx-auto">
@@ -178,7 +186,7 @@ const VolunteerRequestList = () => {
                         onClick={() => handleDelete(post._id)}
                         className="bg-red-500 cursor-pointer text-white px-3 py-1.5 rounded hover:bg-red-600"
                       >
-                        <FaTrash className="inline " /> 
+                        <FaTrash className="inline " />
                       </button>
                     </div>
                   </td>
@@ -232,7 +240,9 @@ const VolunteerRequestList = () => {
               <input
                 type="date"
                 name="deadline"
-                defaultValue={new Date(selectedRequest.deadline).toISOString().substr(0, 10)}
+                defaultValue={new Date(selectedRequest.deadline)
+                  .toISOString()
+                  .substr(0, 10)}
                 className="w-full border p-2 rounded"
                 required
               />

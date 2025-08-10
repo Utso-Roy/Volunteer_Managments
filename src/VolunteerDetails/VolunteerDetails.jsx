@@ -11,7 +11,7 @@ const VolunteerDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/volunteerSingleData`)
+    fetch(`https://volunteer-server-six.vercel.app/volunteerSingleData`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.find((item) => item._id === id);
@@ -26,7 +26,6 @@ const VolunteerDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-6 my-10 bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-lg shadow-lg transition-colors duration-300">
-      
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}

@@ -11,7 +11,9 @@ const VolunteerPostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("http://localhost:3000/volunteerAddPosts");
+        const res = await fetch(
+          "https://volunteer-server-six.vercel.app/volunteerAddPosts"
+        );
         if (!res.ok) throw new Error("Failed to fetch volunteer posts");
         const data = await res.json();
         setPosts(data.data || []);
@@ -39,12 +41,19 @@ const VolunteerPostList = () => {
     if (!confirmResult.isConfirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/volunteerAddPosts/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://volunteer-server-six.vercel.app/volunteerAddPosts/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
       if (data.success) {
-        Swal.fire("Deleted!", "Your volunteer post has been deleted.", "success");
+        Swal.fire(
+          "Deleted!",
+          "Your volunteer post has been deleted.",
+          "success"
+        );
         setPosts((prev) => prev.filter((item) => item._id !== id));
       } else {
         Swal.fire("Failed", data.message || "Deletion failed.", "error");
@@ -59,10 +68,18 @@ const VolunteerPostList = () => {
     const { value: formValues } = await Swal.fire({
       title: "Update Volunteer Post",
       html: `
-        <input id="title" class="swal2-input" placeholder="Title" value="${post.title}">
-        <input id="category" class="swal2-input" placeholder="Category" value="${post.category}">
-        <input id="volunteersNeeded" type="number" class="swal2-input" placeholder="Volunteers Needed" value="${post.volunteersNeeded}">
-        <input id="deadline" type="date" class="swal2-input" value="${new Date(post.deadline).toISOString().split("T")[0]}">
+        <input id="title" class="swal2-input" placeholder="Title" value="${
+          post.title
+        }">
+        <input id="category" class="swal2-input" placeholder="Category" value="${
+          post.category
+        }">
+        <input id="volunteersNeeded" type="number" class="swal2-input" placeholder="Volunteers Needed" value="${
+          post.volunteersNeeded
+        }">
+        <input id="deadline" type="date" class="swal2-input" value="${
+          new Date(post.deadline).toISOString().split("T")[0]
+        }">
       `,
       focusConfirm: false,
       showCancelButton: true,
@@ -70,7 +87,9 @@ const VolunteerPostList = () => {
         return {
           title: document.getElementById("title").value,
           category: document.getElementById("category").value,
-          volunteersNeeded: parseInt(document.getElementById("volunteersNeeded").value),
+          volunteersNeeded: parseInt(
+            document.getElementById("volunteersNeeded").value
+          ),
           deadline: document.getElementById("deadline").value,
         };
       },
@@ -79,16 +98,25 @@ const VolunteerPostList = () => {
     if (!formValues) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/volunteerAddPosts/${post._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formValues),
-      });
+      const res = await fetch(
+        `https://volunteer-server-six.vercel.app/volunteerAddPosts/${post._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formValues),
+        }
+      );
       const result = await res.json();
       if (result.success) {
-        Swal.fire("Updated!", "Volunteer post updated successfully.", "success");
+        Swal.fire(
+          "Updated!",
+          "Volunteer post updated successfully.",
+          "success"
+        );
         setPosts((prev) =>
-          prev.map((item) => (item._id === post._id ? { ...item, ...formValues } : item))
+          prev.map((item) =>
+            item._id === post._id ? { ...item, ...formValues } : item
+          )
         );
       } else {
         Swal.fire("Error!", result.message || "Update failed.", "error");
@@ -99,10 +127,7 @@ const VolunteerPostList = () => {
     }
   };
 
-  if (loading)
-    return (
-    <Loading></Loading>
-    );
+  if (loading) return <Loading></Loading>;
 
   if (error)
     return (
@@ -136,7 +161,9 @@ const VolunteerPostList = () => {
                 />
               </figure>
               <div className="card-body">
-                <h3 className="card-title text-lg font-semibold">{post?.title}</h3>
+                <h3 className="card-title text-lg font-semibold">
+                  {post?.title}
+                </h3>
                 <p>
                   Category: <strong>{post?.category}</strong>
                 </p>
@@ -152,7 +179,7 @@ const VolunteerPostList = () => {
                     onClick={() => handleDelete(post?._id)}
                     className="bg-red-500 cursor-pointer text-white px-3 py-1.5 rounded hover:bg-red-600"
                   >
-                    <FaTrash className="inline " /> 
+                    <FaTrash className="inline " />
                   </button>
                 </div>
               </div>

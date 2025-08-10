@@ -3,7 +3,7 @@ import React, { use } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://volunteer-server-six.vercel.app",
 });
 
 const UseAxiosSecure = () => {
