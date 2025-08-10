@@ -1,67 +1,62 @@
 import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { useNavigate } from "react-router";
 
 const BeAVolunteers = ({ post, onClose }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   if (!post) return null;
 
-  const handleRequest = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const suggestion = form.suggestion.value;
+const handleRequest = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const suggestion = form.suggestion.value;
 
-    const requestData = {
-      postId: post.id,
-      thumbnail: post.thumbnail,
-      title: post.title,
-      description: post.description,
-      category: post.category,
-      location: post.location,
-      volunteersNeeded: post.volunteersNeeded,
-      deadline: post.deadline,
-      organizerName: post.organizerName,
-      organizerEmail: post.organizerEmail,
-      volunteerName: user.displayName,
-      volunteerEmail: user.email,
-      suggestion,
-      status: "requested",
-    };
-
-    try {
-      const res = await fetch("http://localhost:3000/volunteerRequest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        Swal.fire(
-          "Request Sent!",
-          "You have successfully requested to volunteer.",
-          "success"
-        );
-
-        form.reset();
-        onClose();
-        setTimeout(() => {
-          navigate(`/manage_post/${post._id}`);
-        }, 300);
-      } else {
-        Swal.fire("Error", "Something went wrong.", "error");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      Swal.fire("Error", "Server error occurred", "error");
-    }
+  const requestData = {
+    postId: post.id,
+    thumbnail: post.thumbnail,
+    title: post.title,
+    description: post.description,
+    category: post.category,
+    location: post.location,
+    volunteersNeeded: post.volunteersNeeded,
+    deadline: post.deadline,
+    organizerName: post.organizerName,
+    organizerEmail: post.organizerEmail,
+    volunteerName: user.displayName,
+    volunteerEmail: user.email,
+    suggestion,
+    status: "requested",
   };
+
+  try {
+    const res = await fetch("http://localhost:3000/volunteerRequest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      Swal.fire(
+        "Request Sent!",
+        "You have successfully requested to volunteer.",
+        "success"
+      );
+
+      form.reset();
+      onClose(); 
+    } else {
+      Swal.fire("Error", "Something went wrong.", "error");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    Swal.fire("Error", "Server error occurred", "error");
+  }
+};
 
   return (
     <div className="fixed inset-0 z-1500 flex items-center justify-center bg-[#0267af] bg-opacity-50 p-4">
@@ -157,7 +152,7 @@ const BeAVolunteers = ({ post, onClose }) => {
 
           <button
             type="submit"
-            className="w-full bg-[#0267af] text-white font-semibold py-3 rounded hover:bg-[#014f86] transition"
+            className="w-full btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white"
           >
             Request
           </button>

@@ -133,7 +133,7 @@ const AddVolunteer = () => {
 
         <button
           type="submit"
-          className="btn bg-[#0267af] text-white hover:bg-[#014f86] w-full mt-5"
+          className="w-full btn btn-outline text-[#0267af] hover:bg-[#0267af] hover:text-white mt-5"
         >
           Add Post
         </button>

@@ -19,6 +19,7 @@ import DashboardLayout from "../Root/DashboardLayout";
 import Dashboard from "../Page/Dashboard";
 import VolunteerPostList from "../Page/VolunteerPostList";
 import VolunteerRequestList from "../Page/VolunteerRequestList";
+import Event from "../Page/Event";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/event",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Event></Event>{" "}
+          </PrivateRoute>
+        ),
+      },
      
       {
         path: "/all_Volunteer_details/:id",
@@ -119,16 +129,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-        
-         {
-        path: "/dashboard/manage_post",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <ManagePost></ManagePost>{" "}
-          </PrivateRoute>
-        ),
-      },
+    
          {
         path: "/dashboard/volunteer_post",
         element: (

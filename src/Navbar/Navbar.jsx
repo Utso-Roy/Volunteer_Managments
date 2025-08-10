@@ -35,7 +35,9 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
+      {
+        user ? (
+        <li>
         <NavLink
           to="/volunteer-needs"
           className={({ isActive }) =>
@@ -45,6 +47,22 @@ const Navbar = () => {
            Volunteers Need Post
         </NavLink>
       </li>
+        ) : " "
+      }
+      {
+        user ? (
+        <li>
+        <NavLink
+          to="/event"
+          className={({ isActive }) =>
+            isActive ? "text-[#0267af] font-bold" : ""
+          }
+        >
+           Events
+        </NavLink>
+      </li>
+        ) : " "
+      }
       <li>
         <NavLink
           to="/volunteerGuide"
