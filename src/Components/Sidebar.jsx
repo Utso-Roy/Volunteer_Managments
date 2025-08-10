@@ -17,7 +17,7 @@ const navItems = [
   { to: "/dashboard/add-volunteer", label: "Add Volunteer", icon: <FaUsers size={20} /> },
   { to: "/dashboard/volunteer_post", label: "Volunteer Post", icon: <FaHandsHelping size={20} /> },
   { to: "/dashboard/volunteer_request", label: "Volunteer Request", icon: <FaClipboardList size={20} /> },
-  { to: "/settings", label: "Profile Setting", icon: <	FaUserCircle size={20} /> },
+  { to: "/dashboard/profile", label: "Profile Setting", icon: <	FaUserCircle size={20} /> },
 ];
 
 const Sidebar = () => {

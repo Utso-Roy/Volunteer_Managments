@@ -118,7 +118,7 @@ const VolunteerPostList = () => {
       </h2>
 
       {posts.length === 0 ? (
-        <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-5 rounded">
+        <div className="bg-blue-100  border-l-4 border-blue-500 text-blue-800 p-5 rounded">
           No volunteer posts available.
         </div>
       ) : (
@@ -126,7 +126,7 @@ const VolunteerPostList = () => {
           {posts.map((post) => (
             <div
               key={post?._id}
-              className="card  bg-white dark:border-2 dark:border-blue-300 p-4 shadow-sm rounded"
+              className="card  bg-white dark:bg-gray-800 dark:border-2 dark:border-blue-300 p-4 shadow-sm rounded"
             >
               <figure>
                 <img

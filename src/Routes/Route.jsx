@@ -20,6 +20,7 @@ import Dashboard from "../Page/Dashboard";
 import VolunteerPostList from "../Page/VolunteerPostList";
 import VolunteerRequestList from "../Page/VolunteerRequestList";
 import Event from "../Page/Event";
+import ProfileSetting from "../Page/ProfileSetting";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+     
     ],
   },
 
@@ -145,6 +147,15 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             {" "}
             <VolunteerRequestList></VolunteerRequestList>{" "}
+          </PrivateRoute>
+        ),
+      },
+          {
+        path: "/dashboard/profile",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <ProfileSetting></ProfileSetting>{" "}
           </PrivateRoute>
         ),
       },

@@ -15,7 +15,7 @@ const CallToAction = () => {
         </p>
         <button
           onClick={() => navigate("/add-volunteer")}
-          className="bg-white cursor-pointer dark:bg-gray-100 text-[#0267af] dark:text-blue-600 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-lg sm:text-xl shadow-lg  dark:hover:bg-gray-200 transition"
+          className="bg-white cursor-pointer dark:bg-gray-800 text-[#0267af] dark:text-blue-600 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full text-lg sm:text-xl shadow-lg  dark:hover:bg-gray-200 transition"
         >
           Add a Volunteer Need Post
         </button>

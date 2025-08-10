@@ -24,7 +24,7 @@ const VolunteerNeed = () => {
       ? `http://localhost:3000/volunteerPostData?title=${encodeURIComponent(
           query
         )}&page=${page}&limit=12`
-      : `http://localhost:3000/volunteerPostData?page=${page}&limit=4`;
+      : `http://localhost:3000/volunteerPostData?page=${page}&limit=6`;
 
     setLoading(true);
     fetch(url)
