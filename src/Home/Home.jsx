@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router";
@@ -21,10 +20,10 @@ const Home = () => {
       .catch((err) => console.error("Error loading volunteer data:", err));
   }, []);
 
-  const sectionSpacing = "max-w-6xl mx-auto px-6 md:px-8 py-6 my-1";
+  const sectionSpacing = " w-full px-6 mt-8 ";
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 via-base-200 to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+    <div className="bg-gray-50 dark:bg-gray-800  ">
       {/* Full width slider */}
       <div className="w-full">
         <Sliders />
@@ -33,7 +32,7 @@ const Home = () => {
       {/* Volunteer Needs Now Section */}
       <div className={sectionSpacing}>
         <div className="flex items-center justify-center gap-3 ">
-          <h2 className="font-bold mb-5 text-[2rem] text-[#0a72ba]">
+          <h2 className="font-bold mb-5 text-[3rem] text-[#0a72ba]">
             Volunteer Needs Now
           </h2>
         </div>
@@ -41,11 +40,9 @@ const Home = () => {
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
             {volunteerPosts.map((post) => (
-              <motion.div
+              <div
                 key={post._id}
-                className="card bg-white dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 shadow-md rounded-lg overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="card bg-white dark:bg-[#1d232a]  shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
               >
                 <img
                   src={post.thumbnail}
@@ -66,67 +63,49 @@ const Home = () => {
                     </button>
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* About / Why Volunteer Section */}
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
+      <div
+            >
         <AboutWhyVolunteer />
-      </motion.div>
+      </div>
 
       {/* Success Stories Section */}
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+      <div
+      
       >
         <SuccessStories />
-      </motion.div>
+      </div>
 
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-left`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
+      <div
+           >
         <FaqSection />
-      </motion.div>
+      </div>
+
       {/* Call to Action Section */}
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+      <div
+      
       >
         <CallToAction />
-      </motion.div>
+      </div>
 
       {/* Statistics / Impact Section */}
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+      <div
+      
       >
         <StatisticsSection />
-      </motion.div>
-      <motion.div
-        className={`${sectionSpacing} dark:bg-[#1d232a] dark:border-2 dark:border-blue-300 rounded-lg text-center`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+      </div>
+
+      <div
+      
       >
         <Sponsors />
-      </motion.div>
+      </div>
     </div>
   );
 };

@@ -28,14 +28,14 @@ const Sliders = () => {
     },
     {
       image:
-        "https://i.ibb.co.com/hFwg2QrY/istockphoto-472551260-612x612.jpg", // Smiling volunteer
+        "https://i.ibb.co.com/hFwg2QrY/istockphoto-472551260-612x612.jpg", 
       title: "Every Small Help Counts",
       subtitle: "Donate your time and skills to help the needy.",
     },
   ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto my-4 overflow-hidden shadow-lg">
+    <div className="w-full  overflow-hidden shadow-lg">
       <Slider {...settings}>
         {slides.map(({ image, title, subtitle }, index) => (
           <div key={index} className="relative h-96 md:h-[500px]">
