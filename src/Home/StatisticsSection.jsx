@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUsers, FaRegCalendarCheck, FaClock, FaHandsHelping } from "react-icons/fa";
 import CountUp from "react-countup";
+import { Link } from "react-router";
 
 const statsData = [
   {
@@ -123,7 +124,10 @@ const StatisticsSection = () => {
             Join us in making a difference. Every volunteer counts! 🌟
           </p>
           <button className="group relative px-8 py-4 bg-gradient-to-r from-[#0267af] to-[#0a72ba] text-white font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <span className="relative z-10">Become a Volunteer</span>
+            <Link to='/'>
+             <span className="relative z-10">Become a Volunteer</span>
+            
+            </Link>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300"></div>
           </button>
         </div>
