@@ -137,7 +137,7 @@ const VolunteerPostList = () => {
     );
 
   return (
-    <section className="max-w-4xl overflow-y-auto max-h-[500px] mx-auto   py-5 pl-20 md:pl-12">
+    <section className="max-w-4xl overflow-y-auto max-h-[500px] mx-auto   py-5 ">
       <h2 className="text-2xl text-center font-semibold mb-6 text-[#014f86]  pl-3">
         My Volunteer Posts
       </h2>

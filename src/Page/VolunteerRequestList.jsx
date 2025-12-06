@@ -115,7 +115,7 @@ const VolunteerRequestList = () => {
     );
 
   return (
-    <section className="max-w-4xl overflow-y-auto max-h-[500px]  mx-auto px-4 pl-12 sm:px-6 lg:px-8 py-5 space-y-6">
+    <section className="max-w-4xl overflow-y-auto max-h-[500px]  mx-auto   py-5 space-y-6">
       <h2 className="text-2xl font-semibold text-center mb-6 text-[#014f86] pl-3 ">
         My Volunteer Requests
       </h2>

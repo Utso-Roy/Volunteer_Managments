@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FaArrowDown } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
+import Container from "../Container/Container";
 
 const Navbar = () => {
   const { user, logOutUser, setUser } = useContext(AuthContext);
@@ -115,8 +116,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky top-0 z-[1000] my-2 bg-base-100 dark:bg-gray-800 shadow-sm backdrop-blur-md">
-      <div className="navbar-start">
+    <div className=" sticky top-0 z-[1000] my-2 bg-base-100 dark:bg-gray-800 shadow-sm backdrop-blur-md">
+      
+      <Container>
+<div className="navbar max-w-7xl mx-auto">
+        <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -252,6 +256,13 @@ const Navbar = () => {
           </Link>
         )}
       </div>
+      </div>
+
+
+      </Container>
+
+
+
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { FaHandshake, FaHeart, FaUsers, FaPeopleCarry, FaExternalLinkAlt } from "react-icons/fa";
+import Container from "../Container/Container";
 
 const sponsors = [
   {
@@ -42,12 +43,14 @@ const sponsors = [
 
 const Sponsors = () => {
   return (
-    <section className="relative w-full px-6 md:px-8 py-16 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-[#0f1419] dark:via-[#1d232a] dark:to-[#0f1419]   overflow-hidden">
+    <section className="relative py-16 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-[#0f1419] dark:via-[#1d232a] dark:to-[#0f1419]   overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#0267af]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
 
-      <div className="relative z-10">
+      <Container>
+        
+          <div className="relative max-w-7xl mx-auto z-10">
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
@@ -137,6 +140,7 @@ const Sponsors = () => {
           </div>
         </div>
       </div>
+    </Container>
     </section>
   );
 };

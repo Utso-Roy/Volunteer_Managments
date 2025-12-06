@@ -9,6 +9,7 @@ import CallToAction from "./CallToAction";
 import StatisticsSection from "./StatisticsSection";
 import FaqSection from "./FaqSection";
 import Sponsors from "./Sponsors";
+import Container from "../Container/Container";
 
 const Home = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
@@ -29,7 +30,6 @@ const Home = () => {
         <Sliders />
       </div>
 
-      {/* Volunteer Needs Now Section */}
       <div className={sectionSpacing}>
         <div className="flex items-center justify-center gap-3 ">
           <h2 className="font-bold mb-5 text-[3rem] text-[#0a72ba]">
@@ -37,8 +37,9 @@ const Home = () => {
           </h2>
         </div>
 
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <Container>
+          <div className="max-w-7xl mx-auto">
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
             {volunteerPosts.map((post) => (
               <div
                 key={post._id}
@@ -66,10 +67,10 @@ const Home = () => {
               </div>
             ))}
           </div>
-        </div>
+         </div>
+        </Container>
       </div>
 
-      {/* About / Why Volunteer Section */}
       <div
             >
         <AboutWhyVolunteer />

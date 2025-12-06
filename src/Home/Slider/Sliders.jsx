@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import Container from "../../Container/Container";
 
 const Sliders = () => {
   const settings = {
@@ -35,8 +36,12 @@ const Sliders = () => {
   ];
 
   return (
-    <div className="w-full  overflow-hidden shadow-lg">
-      <Slider {...settings}>
+    <div className="overflow-hidden shadow-lg">
+      <Container>
+
+
+        <div className="max-w-7xl mx-auto">
+          <Slider {...settings}>
         {slides.map(({ image, title, subtitle }, index) => (
           <div key={index} className="relative h-96 md:h-[500px]">
             {/* Background Image */}
@@ -61,6 +66,8 @@ const Sliders = () => {
           </div>
         ))}
       </Slider>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -46,12 +46,11 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 dark:bg-[#1d232a] dark:border-2  dark:border-blue-300 p-4 flex items-center justify-center">
+    <div className=" bg-base-200 dark:bg-[#1d232a] dark:border-2  dark:border-blue-300  p-6">
       <form
         onSubmit={handleAddPost}
         className="w-full max-w-xl p-6 shadow-md bg-white dark:bg-gray-700 rounded-xl"
       >
-        {/* Use flex-wrap to allow wrapping on small screens */}
         <div className="flex flex-wrap gap-4">
           <input
             type="text"
