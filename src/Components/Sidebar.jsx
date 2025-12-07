@@ -10,6 +10,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const navItems = [
   { to: "/dashboard/add-volunteer", label: "Add Volunteer", icon: <FaUsers size={20} /> },
@@ -22,13 +23,33 @@ const Sidebar = ({ isOpen, toggleSidebar, userCredentials }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/login");
-    alert("Logged out! You have been logged out.");
+   Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out of your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0267af",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Logged Out!",
+          text: "You have been logged out successfully.",
+          icon: "success",
+          confirmButtonColor: "#0267af",
+          timer: 2000
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    });
   };
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"

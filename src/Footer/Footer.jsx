@@ -6,11 +6,14 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { Link } from "react-router";
+import Container from "../Container/Container";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900  dark:bg-[#1d232a] text-white pt-10  pb-6 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-gray-900  dark:bg-[#1d232a] text-white pt-10  pb-6 ">
+      <Container>
+        
+         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h1 className="text-2xl font-bold text-[#0a72ba] mb-4">
             VolunteerHub
@@ -78,6 +81,7 @@ const Footer = () => {
       <div className="text-center text-gray-400 text-sm mt-10 border-t pt-4 border-gray-700">
         © {new Date().getFullYear()} VolunteerHub — All Rights Reserved.
       </div>
+     </Container>
     </footer>
   );
 };
