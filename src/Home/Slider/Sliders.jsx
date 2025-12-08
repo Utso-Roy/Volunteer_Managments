@@ -36,7 +36,7 @@ const Sliders = () => {
   ];
 
   return (
-    <div className="overflow-hidden shadow-lg">
+    <div className="overflow-hidden ">
       <Container>
 
 

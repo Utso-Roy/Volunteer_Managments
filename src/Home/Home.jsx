@@ -24,9 +24,9 @@ const Home = () => {
   const sectionSpacing = " w-full px-6 mt-8 ";
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-800  ">
+    <div className=" dark:bg-gray-800  ">
       {/* Full width slider */}
-      <div className="w-full">
+      <div >
         <Sliders />
       </div>
 
