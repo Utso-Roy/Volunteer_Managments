@@ -54,22 +54,22 @@ const Contact = () => {
                   icon: <FaEnvelope className="text-[#0267af] text-3xl" />,
                   label: "Email",
                   text: "contact@example.com",
-                  bg: "from-blue-100 to-cyan-100"
+                  bg: "blue-100 "
                 },
                 {
                   icon: <FaPhoneAlt className="text-[#0267af] text-3xl" />,
                   label: "Phone",
                   text: "+123 456 7890",
-                  bg: "from-cyan-100 to-sky-100"
+                  bg: "blue-100"
                 },
                 {
                   icon: <FaMapMarkerAlt className="text-[#0267af] text-3xl" />,
                   label: "Address",
                   text: "123 Main Street, City, Country",
-                  bg: "from-sky-100 to-blue-100"
+                  bg: "blue-100"
                 },
               ].map((item, idx) => (
-                <div key={idx} className={`flex items-start gap-4 p-5 bg-gradient-to-r ${item.bg} rounded-2xl hover:scale-105 transition-transform duration-300`}>
+                <div key={idx} className={`flex items-start gap-4 p-5 bg-${item.bg} rounded-2xl hover:scale-105 transition-transform duration-300`}>
                   <div className="mt-1">{item.icon}</div>
                   <div>
                     <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">{item.label}</p>
